@@ -1,0 +1,12 @@
+<h2>Semester Detail</h2> 
+
+<hr/>
+<div *ngIf="semester">
+  <div>
+    <label><b> Name: </b></label> {{semester.name}}
+  </div>
+</div>
+
+<br>
+<br>
+<button (click)="list()" class="btn btn-primary">Back to Semester List</button><br>
