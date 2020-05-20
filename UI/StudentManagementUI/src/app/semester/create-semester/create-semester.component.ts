@@ -1,4 +1,4 @@
-import { SemesterService } from './../semester.service';
+import { SemesterService } from '../semester.service';
 import { Component, OnInit } from '@angular/core';
 import { Semester } from '../semester';
 import { Router } from '@angular/router';
@@ -37,6 +37,6 @@ export class CreateSemesterComponent implements OnInit {
   }
 
   gotoList() {
-    this.router.navigate(['/employees']);
+    this.router.navigate(['/semesters']);
   }
 }

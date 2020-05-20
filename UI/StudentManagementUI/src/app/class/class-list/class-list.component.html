@@ -1,0 +1,28 @@
+<div class="panel panel-primary">
+    <div Class="panel-heading">
+      <h2>class List</h2>
+      <button (click)="addClass()"  class="fas fa-plus-circle fa-2x"> Create</button>
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Tên</th>
+            <th>Học kỳ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr #datatable *ngFor="let class of classes | async">
+            <td>{{class.name}}</td>
+            <td>{{class.semester.name}}</td>           
+            <td>
+                <i type="button" (click)="updateClass(class.id)" class="far fa-edit fa-2x" style="margin-left: 10px"></i>
+                <i type="button" (click)="opensweetalertcst(class.id)" class="fas fa-trash-alt fa-2x" style="margin-left: 20px"></i>
+                <i type="button" (click)="classDetails(class.id)" class="fas fa-info-circle fa-1.5x" style="margin-left: 20px">Chi tiết</i>                
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

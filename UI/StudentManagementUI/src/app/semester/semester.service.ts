@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
+
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +33,6 @@ export class SemesterService {
     return this.http.get(`${this.baseUrl}`);
   }
   
+ 
 
 }

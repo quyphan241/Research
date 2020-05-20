@@ -36,10 +36,22 @@ public class JDBCClassRepository implements ClassRepository {
     @Override
     public List<Class> findAll() {
         String sql = "SELECT * FROM classes where isDeleted=0";
-        List<Class> classes = jdbcTemplate.query(
+//        String sql= "SELECT c.name ,s.name   FROM classes c INNER JOIN semesters s ON c.id_semester= s.id WHERE c.isDeleted=0       ";
+
+//        List<Class> classes = jdbcTemplate.query(
+//                sql,
+//                new BeanPropertyRowMapper(Class.class));
+//        return classes;
+        return jdbcTemplate.query(
                 sql,
-                new BeanPropertyRowMapper(Class.class));
-        return classes;
+                (rs, rowNum) ->
+                        new Class(
+                                rs.getLong("id"),
+                                rs.getString("name"),
+                                rs.getBoolean("isDeleted"),
+                                rs.getLong("id_semester")
+                        )
+        );
     }
 
     @Override

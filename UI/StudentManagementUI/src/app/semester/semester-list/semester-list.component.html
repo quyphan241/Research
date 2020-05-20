@@ -1,0 +1,26 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+      <h2>Semester List</h2>
+      <button (click)="addSemester()"  class="fas fa-plus-circle fa-2x"> Create</button>
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Tên</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr #datatable *ngFor="let semester of semesters | async">
+            <td>{{semester.name}}</td>
+            <td>
+                <i type="button" (click)="updateSemester(semester.id)" class="far fa-edit fa-2x" style="margin-left: 10px"></i>
+                <i type="button" (click)="opensweetalertcst(semester.id)" class="fas fa-trash-alt fa-2x" style="margin-left: 20px"></i>
+                <i type="button" (click)="semesterDetails(semester.id)" class="fas fa-info-circle fa-1.5x" style="margin-left: 20px">Chi tiết</i>                
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

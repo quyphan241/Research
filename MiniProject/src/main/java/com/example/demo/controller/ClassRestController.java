@@ -20,7 +20,7 @@ public class ClassRestController {
     private JDBCClassRepository classRepository;
 
     @RequestMapping(value = "/classes", method = RequestMethod.GET)
-    public ResponseEntity<List<Class>> findAll() {
+    public ResponseEntity<List<Class>> findAll1() {
         List<Class> classes = classRepository.findAll();
         if (classes.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);

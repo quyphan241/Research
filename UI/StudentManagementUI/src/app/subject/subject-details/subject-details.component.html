@@ -1,0 +1,12 @@
+<h2>Subject Detail</h2> 
+
+<hr/>
+<div *ngIf="subject">
+  <div>
+    <label><b> Name: </b></label> {{subject.name}}
+  </div>
+</div>
+
+<br>
+<br>
+<button (click)="list()" class="btn btn-primary">Back to Subject List</button><br>

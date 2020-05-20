@@ -1,4 +1,4 @@
-import { SemesterService } from './../semester.service';
+import { SemesterService } from '../semester.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Semester } from '../semester';

@@ -1,5 +1,4 @@
 <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
-  <!-- Links -->
   <ul class="navbar-nav">
     <li class="nav-item">
         <a routerLink="semesters" class="nav-link" routerLinkActive="active">Semester List</a>
@@ -9,21 +8,23 @@
     </li>
   </ul>
 </nav>
+<!-- <app-menu></app-menu>  -->
+
 <div class="container">
   <br>
   <h2 style="text-align: center;">{{title}}</h2>
-  <hr>  
+  <hr> 
   <div class="card">
     <div class="card-body">
 
  
-
   <router-outlet></router-outlet>
+  
     </div>
   </div>
 </div>
-<!-- <app-menu></app-menu> -->
 <footer class="footer">
   <div class="container">
   </div>
 </footer>
+

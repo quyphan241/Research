@@ -5,11 +5,12 @@
       <label for="name">Name</label>
       <input type="text" class="form-control" id="name" required [(ngModel)]="semester.name" name="name">
     </div>
-    <button type="submit" class="btn btn-success">Submit</button>
+    <button type="submit" class="fas fa-check-square"> Submit</button>
+    <button (click)="gotoList()" class="fas fa-backward" style="margin-left: 10px"> Back</button>
   </form>
 </div>
 
 <div [hidden]="!submitted">
   <h4>You submitted successfully!</h4>
-  <!-- <button class="btn btn-success" (click)="newSemester()">Add</button> -->
+  <button class="btn btn-success" (click)="newSemester()">Add</button>
 </div>
