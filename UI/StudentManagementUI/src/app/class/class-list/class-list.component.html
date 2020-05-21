@@ -12,9 +12,9 @@
           </tr>
         </thead>
         <tbody>
-          <tr #datatable *ngFor="let class of classes | async">
+          <tr *ngFor="let class of classes | async">
             <td>{{class.name}}</td>
-            <td>{{class.semester.name}}</td>           
+            <td>{{class.name_semester}}</td>           
             <td>
                 <i type="button" (click)="updateClass(class.id)" class="far fa-edit fa-2x" style="margin-left: 10px"></i>
                 <i type="button" (click)="opensweetalertcst(class.id)" class="fas fa-trash-alt fa-2x" style="margin-left: 20px"></i>

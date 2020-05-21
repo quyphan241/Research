@@ -1,21 +1,20 @@
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Subject } from '../subject';
-import { SubjectService } from '../subject.service';
+import { Student } from '../student';
+import { StudentService } from '../student.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-subject-list',
-  templateUrl: './subject-list.component.html',
-  styleUrls: ['./subject-list.component.css']
+  selector: 'app-student-list',
+  templateUrl: './student-list.component.html',
+  styleUrls: ['./student-list.component.css']
 })
-export class SubjectListComponent implements OnInit {
+export class StudentListComponent implements OnInit {
 
-  subjects: Observable<Subject[]>
-
-
-  constructor(private subjectService: SubjectService,
+  students: Observable<Student[]>
+  
+  constructor(private studentService: StudentService,
     private router: Router ) { }
 
   ngOnInit() {
@@ -23,11 +22,11 @@ export class SubjectListComponent implements OnInit {
   }
 
   reloadData() {
-    this.subjects = this.subjectService.getSubjectsList();
+    this.students = this.studentService.getStudentList();
   }
 
-  deleteSubject(id: number) {
-    this.subjectService.deleteSubject(id)
+  deleteStudent(id: number) {
+    this.studentService.deleteStudent(id)
     .subscribe(
       data=> {
         console.log(data);
@@ -36,18 +35,17 @@ export class SubjectListComponent implements OnInit {
       error => console.log(error));
   }
 
-  updateSubject(id: number) {
-    this.router.navigate(['subjects/update', id]);
+  updateStudent(id: number) {
+    this.router.navigate(['students/update', id]);
   }
-  
-  addSubject() {
-    this.router.navigate(['subjects/add']);
+  addStudent() {
+    this.router.navigate(['students/add']);
   }
   
   
 
-  subjectDetails(id : number){
-    this.router.navigate(['subjects/details', id]);
+  studentDetails(id : number){
+    this.router.navigate(['students/details', id]);
   }
 
   opensweetalert()
@@ -73,7 +71,7 @@ export class SubjectListComponent implements OnInit {
       cancelButtonText: 'No, keep it'
     }).then((result) => {
       if (result.value) {
-      this.deleteSubject(id);  
+      this.deleteStudent(id);  
       Swal.fire(
         'Deleted!',
         'Your imaginary file has been deleted.',

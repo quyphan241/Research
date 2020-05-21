@@ -1,4 +1,4 @@
-import { Swal } from 'sweetalert2/dist/sweetalert2.js';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Class } from '../class';
@@ -13,8 +13,7 @@ import { ClassService } from '../class.service';
 export class ClassListComponent implements OnInit {
 
   classes: Observable<Class[]>
-
-
+  
   constructor(private classService: ClassService,
     private router: Router ) { }
 

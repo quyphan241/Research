@@ -1,1 +1,12 @@
-<p>class-details works!</p>
+<h2>Class Detail</h2> 
+
+<hr/>
+<div *ngIf="class">
+  <div>
+    <label><b> Name: </b></label> {{class.name}}
+  </div>
+</div>
+
+<br>
+<br>
+<button (click)="list()" class="btn btn-primary">Back to Class List</button><br>

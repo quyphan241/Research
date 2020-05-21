@@ -19,7 +19,7 @@ export class CreateSubjectComponent implements OnInit {
   ngOnInit() {
   }
 
-  newsubject(): void {
+  newSubject(): void {
     this.submitted = false;
     this.subject = new Subject();
   }

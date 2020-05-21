@@ -13,7 +13,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.util.List;
 import java.util.Optional;
 
-//@CrossOrigin(origins = {("*")})
+@CrossOrigin(origins = {("*")})
 @RestController
 public class StudentRestController {
     @Autowired

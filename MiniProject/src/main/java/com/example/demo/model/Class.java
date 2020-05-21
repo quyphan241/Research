@@ -5,6 +5,7 @@ public class Class {
     private String name;
     private boolean isDeleted;
     private Long id_semester;
+    private String name_semester;
 
     public Class(Long id, String name, boolean isDeleted, Long id_semester){}
 
@@ -16,7 +17,7 @@ public class Class {
     }
 
 
-    public Class(Long id, String name, String name_semester, boolean isDeleted, Long id_semester) {
+    public Class() {
     }
 
     public Long getId() {
@@ -51,4 +52,11 @@ public class Class {
         this.id_semester = id_semester;
     }
 
+    public String getName_semester() {
+        return name_semester;
+    }
+
+    public void setName_semester(String name_semester) {
+        this.name_semester = name_semester;
+    }
 }

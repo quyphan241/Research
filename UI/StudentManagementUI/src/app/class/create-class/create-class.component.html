@@ -1,1 +1,22 @@
-<p>create-class works!</p>
+<h3>Create Class</h3>
+<div [hidden]="submitted" style="width: 400px;">
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Tên</label>
+      <input type="text" class="form-control" id="name" required [(ngModel)]="class.name" name="name">
+      <label for="name_semester">Lớp</label>
+      <select  [(ngModel)]="class.id_semester"  name="id_semester" class="form-control" >
+        <option *ngFor="let semester of semesters | async" type="text" 
+               value ={{semester.id}}>{{semester.name}}
+        </option>
+      </select>
+      
+    </div>
+    <button type="submit" class="fas fa-check-square"> Submit</button>
+    <button (click)="gotoList()" class="fas fa-backward" style="margin-left: 10px"> Back</button>
+  </form>
+</div>
+<div [hidden]="!submitted">
+  <h4>You submitted successfully!</h4>
+  <button class="btn btn-success" (click)="newClass()">Add</button>
+</div>

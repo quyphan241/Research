@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, FormGroup } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CreateSemesterComponent } from './semester/create-semester/create-semester.component';
@@ -18,6 +18,10 @@ import { CreateClassComponent } from './class/create-class/create-class.componen
 import { ClassDetailsComponent } from './class/class-details/class-details.component';
 import { ClassListComponent } from './class/class-list/class-list.component';
 import { UpdateClassComponent } from './class/update-class/update-class.component';
+import { CreateStudentComponent } from './student/create-student/create-student.component';
+import { StudentDetailsComponent } from './student/student-details/student-details.component';
+import { UpdateStudentComponent } from './student/update-student/update-student.component';
+import { StudentListComponent } from './student/student-list/student-list.component';
 
 
 
@@ -37,13 +41,17 @@ import { UpdateClassComponent } from './class/update-class/update-class.componen
     ClassDetailsComponent,
     ClassListComponent,
     UpdateClassComponent,
+    CreateStudentComponent,
+    StudentDetailsComponent,
+    UpdateStudentComponent,
+    StudentListComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    DataTablesModule
+    DataTablesModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

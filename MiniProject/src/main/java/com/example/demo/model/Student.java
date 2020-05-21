@@ -7,8 +7,10 @@ public class Student {
     private String name;
     private Date birthDate;
     private String gender;
+    private Long studentCode;
     private Long id_class;
     private boolean isDeleted;
+    private String name_class;
 
     public Long getId() {
         return id;
@@ -42,6 +44,14 @@ public class Student {
         this.gender = gender;
     }
 
+    public Long getStudentCode() {
+        return studentCode;
+    }
+
+    public void setStudentCode(Long studentCode) {
+        this.studentCode = studentCode;
+    }
+
     public Long getId_class() {
         return id_class;
     }
@@ -56,5 +66,13 @@ public class Student {
 
     public void setDeleted(boolean deleted) {
         isDeleted = deleted;
+    }
+
+    public String getName_class() {
+        return name_class;
+    }
+
+    public void setName_class(String name_class) {
+        this.name_class = name_class;
     }
 }

@@ -1,8 +1,8 @@
 import FilterizrOptions from './FilterizrOptions/FilterizrOptions';
 import FilterContainer from './FilterContainer';
 import FilterItem from './FilterItem';
-import { Filter } from './ActiveFilter';
-import { RawOptions } from './FilterizrOptions/defaultOptions';
+import { RawOptions } from './types/interfaces';
+import { Filter } from './types';
 export default class Filterizr {
     /**
      * Main Filterizr classes exported as static members

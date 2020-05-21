@@ -1,6 +1,6 @@
-import { RawOptionsCallbacks } from './FilterizrOptions/defaultOptions';
 import FilterizrOptions from './FilterizrOptions/FilterizrOptions';
 import FilterItems from './FilterItems';
+import { RawOptionsCallbacks } from './types/interfaces';
 /**
  * Resembles the grid of items within Filterizr.
  */

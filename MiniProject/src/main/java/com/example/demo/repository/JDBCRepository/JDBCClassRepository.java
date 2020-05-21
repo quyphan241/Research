@@ -7,7 +7,9 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.model.Class;
 import com.example.demo.repository.ClassRepository;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Repository
@@ -35,23 +37,22 @@ public class JDBCClassRepository implements ClassRepository {
 
     @Override
     public List<Class> findAll() {
-        String sql = "SELECT * FROM classes where isDeleted=0";
-//        String sql= "SELECT c.name ,s.name   FROM classes c INNER JOIN semesters s ON c.id_semester= s.id WHERE c.isDeleted=0       ";
-
+        String sql= "SELECT c.id as id,c.name as name ,s.name as name_semester FROM classes c " +
+                "INNER JOIN semesters s ON c.id_semester= s.id WHERE c.isDeleted=0";
 //        List<Class> classes = jdbcTemplate.query(
 //                sql,
 //                new BeanPropertyRowMapper(Class.class));
 //        return classes;
-        return jdbcTemplate.query(
-                sql,
-                (rs, rowNum) ->
-                        new Class(
-                                rs.getLong("id"),
-                                rs.getString("name"),
-                                rs.getBoolean("isDeleted"),
-                                rs.getLong("id_semester")
-                        )
-        );
+        List<Class> classes = new ArrayList<>();
+        List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql);
+        for (Map row : rows) {
+            Class obj = new Class();
+            obj.setId(((Long) row.get("ID")));
+            obj.setName((String) row.get("NAME"));
+            obj.setName_semester((String) row.get("name_semester"));
+            classes.add(obj);
+        }
+        return classes;
     }
 
     @Override
