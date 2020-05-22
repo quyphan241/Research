@@ -60,12 +60,14 @@ public class StudentRestController {
             @PathVariable("id") Long id,
             @RequestBody Student student) {
         Optional<Student> currentStudent = Optional.ofNullable(studentRepository.findById(id));
-
         if (!currentStudent.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-
         currentStudent.get().setName(student.getName());
+        currentStudent.get().setBirthDate(student.getBirthDate());
+        currentStudent.get().setGender(student.getGender());
+        currentStudent.get().setId_class(student.getId_class());
+        currentStudent.get().setStudentCode(student.getStudentCode());
         studentRepository.update(currentStudent.get());
         return new ResponseEntity<>(currentStudent.get(), HttpStatus.OK);
     }

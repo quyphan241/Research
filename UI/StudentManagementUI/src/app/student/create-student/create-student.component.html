@@ -1,4 +1,4 @@
-<h3>Update Student</h3>
+<h3>Create Student</h3>
 <div [hidden]="submitted" style="width: 400px;">
   <form (ngSubmit)="onSubmit()">
     <div class="form-group">
@@ -11,11 +11,14 @@
         </option>
       </select>
       <label for="name">Ngày sinh</label>
-      <input type="text" class="form-control" id="birthDate" required [(ngModel)]="student.birthDate" name="birthDate">
+      <input type="date" class="form-control" id="birthDate" required [(ngModel)]="student.birthDate" name="birthDate">
       <label for="name">Giới tính</label>
-      <input type="text" class="form-control" id="gender" required [(ngModel)]="student.gender" name="gender">
+      <select  [(ngModel)]="student.gender"  name="gender" class="form-control" >
+        <option type="text" value="Nam">Nam</option>
+        <option type="text" value="Nữ">Nữ</option>
+      </select>
       <label for="name">Mã học sinh</label>
-      <input type="text" class="form-control" id="studenCode" required [(ngModel)]="student.studentCode" name="studentCode">       
+      <input type="number" class="form-control" id="studenCode" required [(ngModel)]="student.studentCode" name="studentCode">       
     </div>
     <button type="submit" class="fas fa-check-square"> Submit</button>
     <button (click)="gotoList()" class="fas fa-backward" style="margin-left: 10px"> Back</button>
