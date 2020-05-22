@@ -83,4 +83,13 @@ public class StudentRestController {
         studentRepository.deleteById(student.get().getId());
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    @RequestMapping(value = "/classes/{id}/students/", method = RequestMethod.GET)
+    public ResponseEntity<List<Student>> findAllByIdClass(@PathVariable("id") Long id) {
+        List<Student> students = studentRepository.findAllByIdClass(id);
+        if (students.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(students, HttpStatus.OK);
+    }
 }

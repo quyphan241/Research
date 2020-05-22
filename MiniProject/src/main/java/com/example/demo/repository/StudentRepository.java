@@ -10,4 +10,5 @@ public interface StudentRepository {
     int deleteById(Long id);
     List<Student> findAll();
     Student findById(Long id);
+    List<Student> findAllByIdClass(Long id);
 }

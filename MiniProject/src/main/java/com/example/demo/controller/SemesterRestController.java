@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Semester;
-import com.example.demo.model.Student;
 import com.example.demo.repository.JDBCRepository.JDBCSemesterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -65,7 +64,6 @@ public class SemesterRestController {
         if (!currentSemester.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-
         currentSemester.get().setName(semester.getName());
         semesterRepository.update(currentSemester.get());
         return new ResponseEntity<>(currentSemester.get(), HttpStatus.OK);

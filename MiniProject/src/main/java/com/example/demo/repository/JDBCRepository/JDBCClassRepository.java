@@ -39,10 +39,6 @@ public class JDBCClassRepository implements ClassRepository {
     public List<Class> findAll() {
         String sql= "SELECT c.id as id,c.name as name ,s.name as name_semester FROM classes c " +
                 "INNER JOIN semesters s ON c.id_semester= s.id WHERE c.isDeleted=0";
-//        List<Class> classes = jdbcTemplate.query(
-//                sql,
-//                new BeanPropertyRowMapper(Class.class));
-//        return classes;
         List<Class> classes = new ArrayList<>();
         List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql);
         for (Map row : rows) {
@@ -57,7 +53,8 @@ public class JDBCClassRepository implements ClassRepository {
 
     @Override
     public Class findById(Long id) {
-        String sql = "SELECT * FROM classes WHERE id = ? AND isDeleted=0";
+        String sql = "SELECT c.id as id,c.name as name,s.name as name_semester FROM classes c " +
+                "INNER JOIN semesters s ON c.id_semester= s.id WHERE c.id = ?";
         return (Class) jdbcTemplate.queryForObject(
                 sql,
                 new Object[]{id},

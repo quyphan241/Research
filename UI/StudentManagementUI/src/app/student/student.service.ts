@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class StudentService {
   private baseUrl = 'http://localhost:8080/students';
+  private getStudentByIdUrl = 'http://localhost:8080/classes/';
+
 
   constructor(private http: HttpClient) { }
 
@@ -28,5 +30,9 @@ export class StudentService {
 
   getStudentList(): Observable<any> {
     return this.http.get(`${this.baseUrl}`);
+  }
+
+  getStudenstByIdClass(id ): Observable<any> {
+    return this.http.get(`${this.getStudentByIdUrl}/${id}/students/`);
   }
 }

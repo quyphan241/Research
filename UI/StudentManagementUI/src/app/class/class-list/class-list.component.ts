@@ -38,12 +38,11 @@ export class ClassListComponent implements OnInit {
   updateClass(id: number) {
     this.router.navigate(['classes/update', id]);
   }
+
   addClass() {
     this.router.navigate(['classes/add']);
   }
   
-  
-
   classDetails(id : number){
     this.router.navigate(['classes/details', id]);
   }

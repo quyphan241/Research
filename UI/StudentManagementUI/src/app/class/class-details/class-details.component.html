@@ -1,12 +1,35 @@
-<h2>Class Detail</h2> 
+<h2>Danh sách lớp {{class.name}}</h2> 
 
 <hr/>
 <div *ngIf="class">
   <div>
-    <label><b> Name: </b></label> {{class.name}}
+    <label><h5>{{class.name_semester}} </h5></label>  
   </div>
 </div>
-
 <br>
 <br>
+<div class="panel-body">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>STT</th>
+        <th>Tên</th>
+        <th>Lớp</th>
+        <th>Ngày sinh</th>
+        <th>Giới tính</th>
+        <th>Mã học sinh</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of students | async; index as i">
+        <td>{{i + 1}}</td>
+        <td>{{student.name}}</td>
+        <td>{{student.name_class}}</td>
+        <td>{{student.birthDate}}</td>
+        <td>{{student.gender}}</td>
+        <td>{{student.studentCode}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 <button (click)="list()" class="btn btn-primary">Back to Class List</button><br>

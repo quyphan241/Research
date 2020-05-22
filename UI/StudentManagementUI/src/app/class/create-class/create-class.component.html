@@ -6,8 +6,8 @@
       <input type="text" class="form-control" id="name" required [(ngModel)]="class.name" name="name">
       <label for="name_semester">Lớp</label>
       <select  [(ngModel)]="class.id_semester"  name="id_semester" class="form-control" >
-        <option *ngFor="let semester of semesters | async" type="text" 
-               value ={{semester.id}}>{{semester.name}}
+        <option *ngFor="let semester of semesters | async" type="text" value ={{semester.id}}>
+          {{semester.name}}
         </option>
       </select>
       

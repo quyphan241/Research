@@ -64,4 +64,23 @@ public class JDBCStudentRepository implements StudentRepository {
                 new Object[]{id},
                 new BeanPropertyRowMapper(Student.class));
     }
+
+    @Override
+    public List<Student> findAllByIdClass(Long id) {
+        String sql= "SELECT s.id as id, s.name as name, s.birthdate as birthdate, s.gender as gender,  s.student_code as student_code, c.name as name_class FROM students s" +
+                " INNER JOIN classes c ON s.id_class= c.id WHERE s.isDeleted=0 AND id_class =" + id;
+        List<Student> students = new ArrayList<>();
+        List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql);
+        for (Map row : rows) {
+            Student obj = new Student();
+            obj.setId((Long) row.get("id"));
+            obj.setName((String) row.get("name"));
+            obj.setBirthDate((Date) row.get("birthDate"));
+            obj.setGender((String) row.get("gender"));
+            obj.setStudentCode((Long) row.get("student_code"));
+            obj.setName_class((String) row.get("name_class"));
+            students.add(obj);
+        }
+        return students;
+    }
 }
