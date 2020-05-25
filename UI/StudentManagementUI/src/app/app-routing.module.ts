@@ -16,6 +16,7 @@ import { ClassDetailsComponent } from './class/class-details/class-details.compo
 import { StudentListComponent } from './student/student-list/student-list.component';
 import { UpdateStudentComponent } from './student/update-student/update-student.component';
 import { StudentDetailsComponent } from './student/student-details/student-details.component';
+import { ScoreSubjectOfClassComponent } from './testscore/score-subject-of-class/score-subject-of-class.component';
 
 
 const routes: Routes = [
@@ -36,6 +37,8 @@ const routes: Routes = [
   { path: 'students/add', component: CreateStudentComponent },  
   { path: 'students/update/:id', component: UpdateStudentComponent},
   { path: 'students/details/:id', component: StudentDetailsComponent },
+  { path: 'scores/:id_class/:id_subject', component: ScoreSubjectOfClassComponent },
+
 
 ];
 

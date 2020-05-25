@@ -58,7 +58,6 @@ public class JDBCStudentRepository implements StudentRepository {
 
     @Override
     public Student findById(Long id) {
-//        String sql = "SELECT * FROM students WHERE id = ? AND isDeleted=0";
         String sql = "SELECT s.id as id, s.name as name, s.birthdate as birthdate, s.gender as gender,  s.student_code as student_code, c.name as name_class FROM students s " +
                 "INNER JOIN classes c ON s.id_class= c.id WHERE s.id = ? AND s.isDeleted=0";
         return (Student) jdbcTemplate.queryForObject(
@@ -66,16 +65,6 @@ public class JDBCStudentRepository implements StudentRepository {
                 new Object[]{id},
                 new BeanPropertyRowMapper(Student.class));
 
-
-    //        return jdbcTemplate.queryForObject(sql, new Object[]{id}, (rs, rowNum) ->
-//                new Student(
-//                        rs.getLong("id"),
-//                        rs.getString("name"),
-//                        rs.getDate("birthdate"),
-//                        rs.getString("gender"),
-//                        rs.getLong("student_code"),
-//                        rs.getString("name_class")
-//                ));
     }
 
     @Override

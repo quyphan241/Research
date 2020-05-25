@@ -78,4 +78,23 @@ public class JDBCTestScoreRepository implements TestScoreRepository {
         }
         return testScores;
     }
+
+    @Override
+    public List<TestScore> findAllByIdClassAndIdSubject(Long id_class, Long id_subject) {
+        String sql = "SELECT s.id as id_student, s.name as name_student, sco.score1, sco.score2, sco.finalscore, sco.summaryscore FROM students s " +
+                "INNER JOIN testscore sco ON s.id= sco.id_student WHERE s.id_class ="+ id_class+" AND sco.id_subject ="+ id_subject+" AND s.isDeleted=0";
+        List<TestScore> testScores = new ArrayList<>();
+        List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql);
+        for (Map row : rows) {
+            TestScore obj = new TestScore();
+            obj.setId((Long) row.get("id_student")) ;
+            obj.setName_student((String) row.get("name_student"));
+            obj.setFirstScore((double) row.get("score1"));
+            obj.setSecondScore((double) row.get("score2"));
+            obj.setFinalScore((double) row.get("finalscore"));
+            obj.setSummaryScore((double) row.get("summaryscore"));
+            testScores.add(obj);
+        }
+        return testScores;
+    }
 }

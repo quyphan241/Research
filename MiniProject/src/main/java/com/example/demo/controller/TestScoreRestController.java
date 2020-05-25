@@ -91,4 +91,18 @@ public class TestScoreRestController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(testScores, HttpStatus.OK);
-    }}
+    }
+
+    @RequestMapping(value = "/scores/{id_class}/{id_subject}", method = RequestMethod.GET)
+    public ResponseEntity<List<TestScore>> findAllByIdClassAndIdSubject(
+            @PathVariable("id_class") Long id_class,
+            @PathVariable("id_subject") Long id_subject)
+    {
+        List<TestScore> testScores = testScoreRepository.findAllByIdClassAndIdSubject(id_class, id_subject);
+        if (testScores.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(testScores, HttpStatus.OK);
+    }
+
+}

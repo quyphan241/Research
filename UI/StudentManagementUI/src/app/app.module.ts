@@ -22,6 +22,7 @@ import { CreateStudentComponent } from './student/create-student/create-student.
 import { StudentDetailsComponent } from './student/student-details/student-details.component';
 import { UpdateStudentComponent } from './student/update-student/update-student.component';
 import { StudentListComponent } from './student/student-list/student-list.component';
+import { ScoreSubjectOfClassComponent } from './testscore/score-subject-of-class/score-subject-of-class.component';
 
 
 
@@ -45,6 +46,7 @@ import { StudentListComponent } from './student/student-list/student-list.compon
     StudentDetailsComponent,
     UpdateStudentComponent,
     StudentListComponent,
+    ScoreSubjectOfClassComponent,
   ],
   imports: [
     BrowserModule,

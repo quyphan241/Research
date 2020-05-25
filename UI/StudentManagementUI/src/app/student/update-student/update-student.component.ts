@@ -16,7 +16,7 @@ export class UpdateStudentComponent implements OnInit {
 
   id: number;
   student: Student;
-  classes: Observable<Class[]>
+  classes: Observable<Class[]>;
 
 
   constructor(private route: ActivatedRoute,private router: Router, private classService: ClassService,

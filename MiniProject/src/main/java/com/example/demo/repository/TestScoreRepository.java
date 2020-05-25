@@ -11,4 +11,5 @@ public interface TestScoreRepository {
     List<TestScore> findAll();
     TestScore findById(Long id);
     List<TestScore> findAllByIdStudent(Long id);
+    List<TestScore> findAllByIdClassAndIdSubject(Long id_class, Long id_subject);
 }

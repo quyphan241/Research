@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class TestScoreService {
 
+  private baseUrl = 'http://localhost:8080/scores';
   private studentUrl = 'http://localhost:8080/students/';
 
   constructor(private http: HttpClient) { }
@@ -14,5 +15,9 @@ export class TestScoreService {
   getScoreByIdStudent(id: number): Observable<any> {
     return this.http.get(`${this.studentUrl}/${id}/scores/`);
   }
+
+  getScoreByIdClassAndIdSubject(id_class: number, id_subject: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/${id_class}/${id_subject}`);
+  }  
 
 }
