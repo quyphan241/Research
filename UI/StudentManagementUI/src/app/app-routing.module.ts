@@ -15,6 +15,7 @@ import { SubjectDetailsComponent } from './subject/subject-details/subject-detai
 import { ClassDetailsComponent } from './class/class-details/class-details.component';
 import { StudentListComponent } from './student/student-list/student-list.component';
 import { UpdateStudentComponent } from './student/update-student/update-student.component';
+import { StudentDetailsComponent } from './student/student-details/student-details.component';
 
 
 const routes: Routes = [
@@ -33,7 +34,9 @@ const routes: Routes = [
   { path: 'classes/details/:id', component: ClassDetailsComponent },
   { path: 'students', component: StudentListComponent },
   { path: 'students/add', component: CreateStudentComponent },  
-  { path: 'students/update/:id', component: UpdateStudentComponent}
+  { path: 'students/update/:id', component: UpdateStudentComponent},
+  { path: 'students/details/:id', component: StudentDetailsComponent },
+
 ];
 
 @NgModule({

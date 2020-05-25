@@ -12,6 +12,10 @@ public class Student {
     private boolean isDeleted;
     private String name_class;
 
+    public Student() {
+    }
+
+
     public Long getId() {
         return id;
     }

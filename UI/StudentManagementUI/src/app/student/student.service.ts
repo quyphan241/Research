@@ -32,7 +32,12 @@ export class StudentService {
     return this.http.get(`${this.baseUrl}`);
   }
 
-  getStudenstByIdClass(id ): Observable<any> {
+  getStudenstByIdClass(id: number ): Observable<any> {
     return this.http.get(`${this.getStudentByIdUrl}/${id}/students/`);
   }
+
+  getScoreByIdStudent(id: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/${id}/scores/`);
+  }
+
 }

@@ -10,4 +10,5 @@ public interface TestScoreRepository {
     int deleteById(Long id);
     List<TestScore> findAll();
     TestScore findById(Long id);
+    List<TestScore> findAllByIdStudent(Long id);
 }

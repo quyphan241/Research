@@ -21,7 +21,6 @@ export class ClassDetailsComponent implements OnInit {
     private classService: ClassService) { }
 
   ngOnInit() {
-    // this.students = this.studentService.getStudentList();
     this.class = new Class();
     this.id = this.route.snapshot.params['id'];
     this.students = this.studentService.getStudenstByIdClass(this.id);

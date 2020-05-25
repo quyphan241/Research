@@ -1,1 +1,48 @@
-<p>student-details works!</p>
+<h2>Thông tin học sinh</h2> 
+
+<hr/>
+<div *ngIf="student">
+  <div>
+    <label><b> Tên: </b></label> {{student.name}}
+  </div>
+  <div>
+    <label><b> Lớp: </b></label> {{student.name_class}}
+  </div>
+  <div>
+    <label><b> Ngày sinh: </b></label> {{student.birthDate | date:'shortDate'}}
+  </div>
+  <div>
+    <label><b> Giới tính: </b></label> {{student.gender}}
+  </div>
+  <div>
+    <label><b> Mã học sinh: </b></label> {{student.studentCode}}
+  </div>
+</div>
+<br>
+<h2>Kết quả học tập</h2> 
+
+<div class="panel-body">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Môn học</th>
+        <th>Điểm 15 phút </th>
+        <th>Điểm 1 tiết</th>
+        <th>Điểm cuối kì </th>
+        <th>Điểm trung bình</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let score of scores | async">
+        <td>{{score.name_subject}}</td>
+        <td>{{score.firstScore}}</td>
+        <td>{{score.secondScore}}</td>
+        <td>{{score.finalScore}}</td>
+        <td>{{score.summaryScore}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<br>
+<br>
+<button (click)="list()" class="btn btn-primary">Back to Student List</button><br>

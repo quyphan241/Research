@@ -2,12 +2,14 @@ package com.example.demo.model;
 
 public class TestScore {
     private Long id;
-    private float firstScore;
-    private float secondScore;
-    private float finalScore;
-    private float summaryScore;
+    private double firstScore;
+    private double secondScore;
+    private double finalScore;
+    private double summaryScore;
     private Long id_subject;
     private Long id_student;
+    private String name_subject;
+    private String name_student;
     private boolean isDeleted;
 
     public Long getId() {
@@ -18,27 +20,27 @@ public class TestScore {
         this.id = id;
     }
 
-    public float getFirstScore() {
+    public double getFirstScore() {
         return firstScore;
     }
 
-    public void setFirstScore(float firstScore) {
+    public void setFirstScore(double firstScore) {
         this.firstScore = firstScore;
     }
 
-    public float getSecondScore() {
+    public double getSecondScore() {
         return secondScore;
     }
 
-    public void setSecondScore(float secondScore) {
+    public void setSecondScore(double secondScore) {
         this.secondScore = secondScore;
     }
 
-    public float getFinalScore() {
+    public double getFinalScore() {
         return finalScore;
     }
 
-    public void setFinalScore(float finalScore) {
+    public void setFinalScore(double finalScore) {
         this.finalScore = finalScore;
     }
 
@@ -58,12 +60,28 @@ public class TestScore {
         this.id_student = id_student;
     }
 
-    public float getSummaryScore() {
+    public double getSummaryScore() {
         return summaryScore;
     }
 
-    public void setSummaryScore(float summaryScore) {
+    public void setSummaryScore(double summaryScore) {
         this.summaryScore = summaryScore;
+    }
+
+    public String getName_subject() {
+        return name_subject;
+    }
+
+    public void setName_subject(String name_subject) {
+        this.name_subject = name_subject;
+    }
+
+    public String getName_student() {
+        return name_student;
+    }
+
+    public void setName_student(String name_student) {
+        this.name_student = name_student;
     }
 
     public boolean isDeleted() {

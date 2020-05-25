@@ -68,7 +68,6 @@ public class TestScoreRestController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
 
-//        currentTestScore.get().setName(testScore.getName());
         testScoreRepository.update(currentTestScore.get());
         return new ResponseEntity<>(currentTestScore.get(), HttpStatus.OK);
     }
@@ -84,4 +83,12 @@ public class TestScoreRestController {
         testScoreRepository.deleteById(testScore.get().getId());
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-}
+
+    @RequestMapping(value = "/students/{id}/scores", method = RequestMethod.GET)
+    public ResponseEntity<List<TestScore>> findAllByStudentId(@PathVariable("id") Long id) {
+        List<TestScore> testScores = testScoreRepository.findAllByIdStudent(id);
+        if (testScores.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(testScores, HttpStatus.OK);
+    }}
