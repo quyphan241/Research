@@ -5,15 +5,14 @@
       <label for="name"> Name</label>
       <input type="text" class="form-control" id="name" required [(ngModel)]="student.name" name="name">
       <label for="name_class">Lớp</label>
-      <select  [(ngModel)]="student.id_class"  name="id_class" class="form-control" >
-        <option *ngFor="let class of classes | async" type="text" 
-               value ={{class.id}}>{{class.name}}
+      <select  [(ngModel)]="student.id_class"  name="id_class" class="form-control" value="student.class_name" >
+        <option *ngFor="let class of classes | async" type="text" value ={{class.id}} [selected]="student.name_class">{{class.name}}
         </option>
       </select>
       <label for="name">Ngày sinh</label>
-      <input type="date" class="form-control" id="birthDate" required [(ngModel)]="student.birthDate" name="birthDate" >
+      <input type="date" class="form-control" id="birthDate" required [(ngModel)]="student.birthDate" type="date" name="birthDate" >
       <label for="name">Giới tính</label>
-      <select [(ngModel)]="student.gender"  name="gender" class="form-control">
+      <select [(ngModel)]="student.gender" name="gender" class="form-control">
         <option type="text" value="Nam">Nam</option>
         <option type="text" value="Nữ">Nữ</option>
       </select>

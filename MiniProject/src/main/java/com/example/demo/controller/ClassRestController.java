@@ -63,8 +63,8 @@ public class ClassRestController {
         if (!currentClass.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-
         currentClass.get().setName(_class.getName());
+        currentClass.get().setId_semester(_class.getId_semester());
         classRepository.update(currentClass.get());
         return new ResponseEntity<>(currentClass.get(), HttpStatus.OK);
     }

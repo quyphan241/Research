@@ -23,6 +23,7 @@ import { StudentDetailsComponent } from './student/student-details/student-detai
 import { UpdateStudentComponent } from './student/update-student/update-student.component';
 import { StudentListComponent } from './student/student-list/student-list.component';
 import { ScoreSubjectOfClassComponent } from './testscore/score-subject-of-class/score-subject-of-class.component';
+import { TestScoreComponent } from './testscore/test-score/test-score.component';
 
 
 
@@ -33,20 +34,27 @@ import { ScoreSubjectOfClassComponent } from './testscore/score-subject-of-class
     SemesterDetailsComponent,
     SemesterListComponent,
     SemesterUpdateComponent,
+
     MenuComponent,
+
     CreateSubjectComponent,
     SubjectDetailsComponent,
     SubjectListComponent,
     UpdateSubjectComponent,
+
     CreateClassComponent,
     ClassDetailsComponent,
     ClassListComponent,
     UpdateClassComponent,
+
     CreateStudentComponent,
     StudentDetailsComponent,
     UpdateStudentComponent,
     StudentListComponent,
+    
     ScoreSubjectOfClassComponent,
+    
+    TestScoreComponent,
   ],
   imports: [
     BrowserModule,

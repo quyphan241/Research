@@ -1,3 +1,4 @@
+import { TestScoreComponent } from './testscore/test-score/test-score.component';
 import { CreateStudentComponent } from './student/create-student/create-student.component';
 import { UpdateClassComponent } from './class/update-class/update-class.component';
 import { CreateClassComponent } from './class/create-class/create-class.component';
@@ -20,24 +21,30 @@ import { ScoreSubjectOfClassComponent } from './testscore/score-subject-of-class
 
 
 const routes: Routes = [
-  { path: '', redirectTo:'semesters', pathMatch:'full'},
+  { path: '', redirectTo:'students', pathMatch:'full'},
   { path: 'semesters', component: SemesterListComponent },
   { path: 'semesters/add', component: CreateSemesterComponent },
   { path: 'semesters/update/:id', component: SemesterUpdateComponent },
   { path: 'semesters/details/:id', component: SemesterDetailsComponent },
+
   { path: 'subjects', component: SubjectListComponent},
   { path: 'subjects/add', component: CreateSubjectComponent},
   { path: 'subjects/update/:id', component: UpdateSubjectComponent },
   { path: 'subjects/details/:id', component: SubjectDetailsComponent },
+
   { path: 'classes', component: ClassListComponent},
   { path: 'classes/add', component: CreateClassComponent},
   { path: 'classes/update/:id', component: UpdateClassComponent },
   { path: 'classes/details/:id', component: ClassDetailsComponent },
+
   { path: 'students', component: StudentListComponent },
   { path: 'students/add', component: CreateStudentComponent },  
   { path: 'students/update/:id', component: UpdateStudentComponent},
   { path: 'students/details/:id', component: StudentDetailsComponent },
+
   { path: 'scores/:id_class/:id_subject', component: ScoreSubjectOfClassComponent },
+  { path: 'testscores/:id_class/:id_subject', component: TestScoreComponent },
+
 
 
 ];

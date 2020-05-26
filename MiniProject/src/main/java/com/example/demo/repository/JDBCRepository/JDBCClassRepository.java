@@ -25,8 +25,8 @@ public class JDBCClassRepository implements ClassRepository {
 
     @Override
     public int update(Class _class) {
-        String sql= "UPDATE classes SET name = ? WHERE id=?";
-        return jdbcTemplate.update(sql, _class.getName(), _class.getId());
+        String sql= "UPDATE classes SET name = ?, id_semester= ? WHERE id=?";
+        return jdbcTemplate.update(sql, _class.getName(),_class.getId_semester(), _class.getId());
     }
 
     @Override
@@ -53,7 +53,7 @@ public class JDBCClassRepository implements ClassRepository {
 
     @Override
     public Class findById(Long id) {
-        String sql = "SELECT c.id as id,c.name as name,s.name as name_semester FROM classes c " +
+        String sql = "SELECT c.id as id,c.name as name, c.id_semester, s.name as name_semester  FROM classes c " +
                 "INNER JOIN semesters s ON c.id_semester= s.id WHERE c.id = ?";
         return (Class) jdbcTemplate.queryForObject(
                 sql,
