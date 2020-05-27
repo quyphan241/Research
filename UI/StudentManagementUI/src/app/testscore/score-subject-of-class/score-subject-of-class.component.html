@@ -1,4 +1,4 @@
-<div class="panel-body">
+<div class="panel-body form-group">
   <form (ngSubmit)="onSubmit()">
     <table class="table table-striped">
       <thead>
@@ -37,15 +37,17 @@
             <span *ngIf="!scoreEditing"> {{ score.firstScore }}</span>
           </td>
           <td>
-            <input size="1" type="text" class="form-control" [(ngModel)]="score.summaryScore"
-              *ngIf="scoreEditing && scoreEditingIndex == i" id="summaryScore" name="summaryScore" />
+            <!-- <input size="1" type="text" class="form-control" [(ngModel)]="score.summaryScore"
+              *ngIf="scoreEditing && scoreEditingIndex == i" id="summaryScore" name="summaryScore" /> -->
             <span *ngIf="!scoreEditing"> {{ score.summaryScore }}</span>
           </td>
           <td>
             <button *ngIf="enableEdit && enableEditIndex == i" (click)="enableEdit=false" (click)="scoreEditing=false"
               class="btn page-secondary-action-btn" ng-click="cancel()">Cancel</button>
-            <button *ngIf="enableEdit && enableEditIndex == i" id="saveBtn" class="btn page-primary-action-btn"
-              (click)="updateScore(score.id)" type="submit">Save</button>
+            <!-- <button *ngIf="enableEdit && enableEditIndex == i" id="saveBtn" class="btn page-primary-action-btn"
+              (click)="updateScore(score.id )" type="submit">Save</button> -->
+              <button *ngIf="enableEdit && enableEditIndex == i" class="btn page-primary-action-btn"
+              type="submit">Save</button>
             <a class="table-row-action edit-action" *ngIf="!enableEdit" (click)="enableEditMethod($event, i,score.id)">edit</a>
           </td>
         </tr>

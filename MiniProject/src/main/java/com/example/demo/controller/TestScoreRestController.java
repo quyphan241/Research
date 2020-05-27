@@ -42,6 +42,7 @@ public class TestScoreRestController {
                     HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(testScore.get(), HttpStatus.OK);
+
     }
 
     @RequestMapping(value = "/testScores",
@@ -61,16 +62,16 @@ public class TestScoreRestController {
     public ResponseEntity<TestScore> updateTestScore(
             @PathVariable("id") Long id,
             @RequestBody TestScore testScore) {
-        Optional<TestScore> currentTestScore = Optional.ofNullable(testScoreRepository.findById(id));
-        if (!currentTestScore.isPresent()) {
+        TestScore currentTestScore = testScoreRepository.findById(id);
+        if (currentTestScore ==null) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        currentTestScore.get().setFirstScore(testScore.getFirstScore());
-        currentTestScore.get().setSecondScore(testScore.getSecondScore());
-        currentTestScore.get().setFinalScore(testScore.getFinalScore());
-        currentTestScore.get().setSummaryScore(testScore.getSummaryScore());
-        testScoreRepository.update(currentTestScore.get());
-        return new ResponseEntity<>(currentTestScore.get(), HttpStatus.OK);
+        currentTestScore.setFirstScore(testScore.getFirstScore());
+        currentTestScore.setSecondScore(testScore.getSecondScore());
+        currentTestScore.setFinalScore(testScore.getFinalScore());
+        currentTestScore.setSummaryScore(testScore.getSummaryScore());
+        testScoreRepository.update(currentTestScore);
+        return new ResponseEntity<>(currentTestScore, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/testScores/delete/{id}",

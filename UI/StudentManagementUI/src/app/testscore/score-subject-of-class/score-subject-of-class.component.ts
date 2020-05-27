@@ -32,6 +32,11 @@ export class ScoreSubjectOfClassComponent implements OnInit {
     console.log(i, e);
     this.id_score = id_score;
     this.score = new TestScore();
+    this.testScoreService.getScore(this.id_score)
+    .subscribe(data => {
+      console.log(data)
+      this.score = data;
+    }, error => console.log(error));
   }
   
   constructor(private route: ActivatedRoute, private router: Router, private testScoreService: TestScoreService) { 
@@ -48,13 +53,13 @@ export class ScoreSubjectOfClassComponent implements OnInit {
   }
 
   onSubmit() {
-    this.updateScore(this.id_score, this.score);   
+    this.updateScore();
   }
 
-  updateScore(id: number, score: TestScore) {
-    this.testScoreService.updateTestScore(id, score)
+  updateScore() {
+
+    this.testScoreService.updateTestScore(this.id_score, this.score)
     .subscribe(data => console.log(data), error => console.log(error));
-  this.score = new TestScore();;    
   }
 
   list(){

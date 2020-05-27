@@ -17,9 +17,7 @@ public class TestScore {
     }
 
     public TestScore() {
-
     }
-
     public Long getId() {
         return id;
     }

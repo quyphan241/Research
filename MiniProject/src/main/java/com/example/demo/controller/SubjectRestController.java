@@ -19,7 +19,6 @@ public class SubjectRestController {
     @Autowired
     private JDBCSubjectRepository subjectRepository;
 
-
     @RequestMapping(value = "/subjects", method = RequestMethod.GET)
     public ResponseEntity<List<Subject>> findAll() {
         List<Subject> subjects = subjectRepository.findAll();
@@ -61,7 +60,6 @@ public class SubjectRestController {
             @PathVariable("id") Long id,
             @RequestBody Subject subject) {
         Subject currentSubject = subjectRepository.findById(id);
-
         if (currentSubject ==null) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }

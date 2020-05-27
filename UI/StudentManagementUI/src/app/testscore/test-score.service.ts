@@ -27,4 +27,8 @@ export class TestScoreService {
   updateTestScore(id: number, value: any): Observable<Object> {
     return this.http.put(`${this.testScoreUrl}/${id}`, value);
   }
+
+  getScore(id: number): Observable<any> {
+    return this.http.get(`${this.testScoreUrl}/${id}`); 
+  }
 }
