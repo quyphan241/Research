@@ -10,11 +10,25 @@ import { TestScoreService } from '../test-score.service';
   styleUrls: ['./score-subject-of-class.component.css']
 })
 export class ScoreSubjectOfClassComponent implements OnInit {
-
+  // add edit
+  name = 'Angular';
+  enableEdit = false;
+  enableEditIndex = null;
+  scoreEditing = false;
+  scoreEditingIndex = null;
   id_class: number;
   id_subject: number;
   scores: Observable<TestScore>;
 
+  //add edit
+  enableEditMethod(e: any, i: any) {
+    this.enableEdit = true;
+    this.enableEditIndex = i;
+    this.scoreEditing = true;
+    this.scoreEditingIndex = i;
+    console.log(i, e);
+  }
+  
   constructor(private route: ActivatedRoute, private router: Router, private testScoreService: TestScoreService) { 
   }
 
