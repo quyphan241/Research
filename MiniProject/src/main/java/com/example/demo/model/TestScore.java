@@ -12,6 +12,14 @@ public class TestScore {
     private String name_student;
     private boolean isDeleted;
 
+    public TestScore(Long id_subject) {
+        this.id_subject = id_subject;
+    }
+
+    public TestScore() {
+
+    }
+
     public Long getId() {
         return id;
     }
