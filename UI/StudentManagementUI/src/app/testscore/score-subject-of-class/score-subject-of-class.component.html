@@ -1,49 +1,55 @@
 <div class="panel-body">
   <form (ngSubmit)="onSubmit()">
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>STT</th>
-        <th>Tên</th>
-        <th>Điểm 15 phút</th>
-        <th>Điểm 1 tiết</th>
-        <th>Điểm cuối kì</th>
-        <th>Điểm trung bình</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let score of scores | async; index as i"  class="hover-highlight">
-        <td>{{ i + 1 }}</td>
-        <td>{{ score.name_student }}</td>
-        <!-- <td>{{ score.firstScore }}</td> -->
-        <!-- <td>{{ score.secondScore }}</td>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>score id</th>
+          <th>STT</th>
+          <th>Tên</th>
+          <th>Điểm 15 phút</th>
+          <th>Điểm 1 tiết</th>
+          <th>Điểm cuối kì</th>
+          <th>Điểm trung bình</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let score of scores | async; index as i" class="hover-highlight">
+          <td>{{score.id}}</td>
+          <td>{{ i + 1 }}</td>
+          <td>{{ score.name_student }}</td>
+          <!-- <td>{{ score.firstScore }}</td> -->
+          <!-- <td>{{ score.secondScore }}</td>
         <td>{{ score.finalScore }}</td>
         <td>{{ score.summaryScore }}</td> -->
-        <td>
-          <input size="1" type="text" class="form-control"  [(ngModel)]="score.firstScore" *ngIf="scoreEditing && scoreEditingIndex == i" id="firstScore" name="firstScore"/> 
-          <span *ngIf="!scoreEditing"> {{ score.firstScore }}</span>
-        </td>
-        <td>
-          <input size="1" type="text" class="form-control"  [(ngModel)]="score.secondScore" *ngIf="scoreEditing && scoreEditingIndex == i" id="secondScore" name="secondScore"/> 
-          <span *ngIf="!scoreEditing"> {{ score.secondScore }}</span>
-        </td>
-        <td>
-          <input size="1" type="text" class="form-control"  [(ngModel)]="score.finalScore" *ngIf="scoreEditing && scoreEditingIndex == i" id="finalScorefirstScore" name="finalScore"/> 
-          <span *ngIf="!scoreEditing"> {{ score.firstScore }}</span>
-        </td>
-        <td>
-          <input size="1" type="text" class="form-control"  [(ngModel)]="score.summaryScore" *ngIf="scoreEditing && scoreEditingIndex == i" id="summaryScore" name="summaryScore"/> 
-          <span *ngIf="!scoreEditing"> {{ score.summaryScore }}</span>
-        </td>
-      
-        <td>
-            <button *ngIf="enableEdit && enableEditIndex == i" (click)="enableEdit=false"  (click)="scoreEditing=false" class="btn page-secondary-action-btn" ng-click="cancel()">Cancel</button>
-            <button *ngIf="enableEdit && enableEditIndex == i" id="saveBtn" class="btn page-primary-action-btn" (click)="saveSegment()" type="submit">Save</button>
-          <a class="table-row-action edit-action" *ngIf="!enableEdit" (click)="enableEditMethod($event, i)">edit</a>
-
-      </td>
-      </tr>
-    </tbody>
-  </table>
+          <td>
+            <input size="1" type="text" class="form-control" [(ngModel)]="score.firstScore"
+              *ngIf="scoreEditing && scoreEditingIndex == i" id="firstScore" name="firstScore" />
+            <span *ngIf="!scoreEditing"> {{ score.firstScore }}</span>
+          </td>
+          <td>
+            <input size="1" type="text" class="form-control" [(ngModel)]="score.secondScore"
+              *ngIf="scoreEditing && scoreEditingIndex == i" id="secondScore" name="secondScore" />
+            <span *ngIf="!scoreEditing"> {{ score.secondScore }}</span>
+          </td>
+          <td>
+            <input size="1" type="text" class="form-control" [(ngModel)]="score.finalScore"
+              *ngIf="scoreEditing && scoreEditingIndex == i" id="finalScorefirstScore" name="finalScore" />
+            <span *ngIf="!scoreEditing"> {{ score.firstScore }}</span>
+          </td>
+          <td>
+            <input size="1" type="text" class="form-control" [(ngModel)]="score.summaryScore"
+              *ngIf="scoreEditing && scoreEditingIndex == i" id="summaryScore" name="summaryScore" />
+            <span *ngIf="!scoreEditing"> {{ score.summaryScore }}</span>
+          </td>
+          <td>
+            <button *ngIf="enableEdit && enableEditIndex == i" (click)="enableEdit=false" (click)="scoreEditing=false"
+              class="btn page-secondary-action-btn" ng-click="cancel()">Cancel</button>
+            <button *ngIf="enableEdit && enableEditIndex == i" id="saveBtn" class="btn page-primary-action-btn"
+              (click)="updateScore(score.id)" type="submit">Save</button>
+            <a class="table-row-action edit-action" *ngIf="!enableEdit" (click)="enableEditMethod($event, i,score.id)">edit</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </form>
 </div>

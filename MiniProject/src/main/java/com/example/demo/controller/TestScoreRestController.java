@@ -37,7 +37,6 @@ public class TestScoreRestController {
     public ResponseEntity<TestScore> getTestScoreById(
             @PathVariable("id") Long id) {
         Optional<TestScore> testScore = Optional.ofNullable(testScoreRepository.findById(id));
-
         if (!testScore.isPresent()) {
             return new ResponseEntity<>(testScore.get(),
                     HttpStatus.NO_CONTENT);
@@ -63,11 +62,13 @@ public class TestScoreRestController {
             @PathVariable("id") Long id,
             @RequestBody TestScore testScore) {
         Optional<TestScore> currentTestScore = Optional.ofNullable(testScoreRepository.findById(id));
-
         if (!currentTestScore.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-
+        currentTestScore.get().setFirstScore(testScore.getFirstScore());
+        currentTestScore.get().setSecondScore(testScore.getSecondScore());
+        currentTestScore.get().setFinalScore(testScore.getFinalScore());
+        currentTestScore.get().setSummaryScore(testScore.getSummaryScore());
         testScoreRepository.update(currentTestScore.get());
         return new ResponseEntity<>(currentTestScore.get(), HttpStatus.OK);
     }
@@ -103,6 +104,20 @@ public class TestScoreRestController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(testScores, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/testScores/{id_student}/{id_subject}",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<TestScore> getTestScoreById(
+            @PathVariable("id_student") Long id_student,
+            @PathVariable("id_subject") Long id_subject) {
+        Optional<TestScore> testScore = Optional.ofNullable(testScoreRepository.findByIdStudentAndIdSubject(id_student, id_subject));
+        if (!testScore.isPresent()) {
+            return new ResponseEntity<>(testScore.get(),
+                    HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(testScore.get(), HttpStatus.OK);
     }
 
 }

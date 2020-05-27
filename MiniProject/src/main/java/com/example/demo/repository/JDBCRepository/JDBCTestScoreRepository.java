@@ -84,7 +84,7 @@ public class JDBCTestScoreRepository implements TestScoreRepository {
     public List<TestScore> findAllByIdClassAndIdSubject(Long id_class, Long id_subject) {
 //        String sql = "SELECT s.id as id_student, s.name as name_student, sco.score1, sco.score2, sco.finalscore, sco.summaryscore FROM students s " +
 //                "INNER JOIN testscore sco ON s.id= sco.id_student WHERE s.id_class ="+ id_class+" AND sco.id_subject ="+ id_subject+" AND s.isDeleted=0";
-        String sql = "SELECT s.id as id_student, sco.id_student as sco_idstudent,sco.id_subject, s.id_class, s.name as name_student, sco.score1, sco.score2, sco.finalscore, sco.summaryscore FROM students s"
+        String sql = "SELECT s.id as id_student,sco.id as id_score, sco.id_student as sco_idstudent,sco.id_subject, s.id_class, s.name as name_student, sco.score1, sco.score2, sco.finalscore, sco.summaryscore FROM students s"
         + " LEFT JOIN testscore sco ON s.id= sco.id_student AND sco.id_subject="+id_subject+" WHERE s.id_class ="+ id_class+" AND s.isDeleted=0";
 
         List<TestScore> testScores = new ArrayList<>();
@@ -100,6 +100,7 @@ public class JDBCTestScoreRepository implements TestScoreRepository {
 //            testScores.add(obj);
             if(row.get("id_student")!=null && row.get("score1")!=null){
                 TestScore obj = new TestScore();
+                obj.setId((Long) row.get("id_score"));
                 obj.setId_student((Long) row.get("id_student"));
                 obj.setId_subject((Long) row.get("id_subject"));
                 obj.setName_student((String) row.get("name_student"));
@@ -111,6 +112,7 @@ public class JDBCTestScoreRepository implements TestScoreRepository {
             }
             else {
                 TestScore obj = new TestScore(id_subject);
+                obj.setId((Long) row.get("id_score"));
                 obj.setId_student((Long) row.get("id_student"));
                 obj.setName_student((String) row.get("name_student"));
                 obj.setFirstScore(-1);
@@ -121,5 +123,15 @@ public class JDBCTestScoreRepository implements TestScoreRepository {
             }
         }
         return testScores;
+    }
+
+    @Override
+    public TestScore findByIdStudentAndIdSubject(Long id_student, Long id_subject) {
+        String sql = "SELECT s.id as id_student, sco.id_student as sco_idstudent,sco.id_subject, s.id_class, s.name as name_student, sco.score1, sco.score2, sco.finalscore, sco.summaryscore FROM students s" +
+                " INNER JOIN testscore sco ON s.id= sco.id_student WHERE sco.id_subject= " +id_subject+" AND sco.id_student =" +id_student;
+        return (TestScore) jdbcTemplate.queryForObject(
+                sql,
+                new Object[]{id_student, id_subject},
+                new BeanPropertyRowMapper(TestScore.class));
     }
 }
