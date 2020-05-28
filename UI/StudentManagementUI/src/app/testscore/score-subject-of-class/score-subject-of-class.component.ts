@@ -30,7 +30,7 @@ export class ScoreSubjectOfClassComponent implements OnInit {
   finalScore : any;
   summaryScore : any;
 
-  //Add/ Edit Score
+  //Add Edit Score
   enableEditMethod(e: any, i: any, id_score: number, firstScore: number, secondScore: number, finalScore: number, summaryScore:number, id_student: number) {
     console.log(id_score, id_student);
     this.enableEdit = true;
