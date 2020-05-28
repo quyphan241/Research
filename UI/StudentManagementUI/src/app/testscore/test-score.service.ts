@@ -6,10 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class TestScoreService {
-  updateScore() {
-    throw new Error("Method not implemented.");
-  }
-
+ 
   private testScoreUrl = 'http://localhost:8080/testScores';
   private baseUrl = 'http://localhost:8080/scores';
   private studentUrl = 'http://localhost:8080/students/';
@@ -31,4 +28,8 @@ export class TestScoreService {
   getScore(id: number): Observable<any> {
     return this.http.get(`${this.testScoreUrl}/${id}`); 
   }
+
+  createScore(score: Object): Observable<Object> {
+    return this.http.post(`${this.testScoreUrl}`, score);
+  } 
 }

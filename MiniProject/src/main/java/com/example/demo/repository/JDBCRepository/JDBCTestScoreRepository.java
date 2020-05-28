@@ -24,16 +24,15 @@ public class JDBCTestScoreRepository implements TestScoreRepository {
     @Override
     public int save(TestScore testScore) {
         String sql= "INSERT INTO testscore(firstscore, secondscore, finalScore, summaryScore, id_subject,id_student)" +
-                " VALUES(?,?,?,?,?,?,?)";
+                " VALUES(?,?,?,?,?,?)";
         return jdbcTemplate.update(sql,testScore.getFirstScore(), testScore.getSecondScore(),
                 testScore.getFinalScore(), testScore.getSummaryScore(), testScore.getId_subject(), testScore.getId_student());
     }
 
     @Override
     public int update(TestScore testScore) {
-        String sql= "UPDATE testScore SET firstscore = ?, secondscore=?, finalScore=?, id_subject=?, id_student=? WHERE id=?";
-        return jdbcTemplate.update(sql, testScore.getFirstScore(),testScore.getSecondScore(),testScore.getFinalScore(),
-                testScore.getId_subject(), testScore.getId_subject(),testScore.getId());
+        String sql= "UPDATE testScore SET firstscore = ?, secondscore=?, finalScore=? WHERE id=?";
+        return jdbcTemplate.update(sql, testScore.getFirstScore(),testScore.getSecondScore(),testScore.getFinalScore(),testScore.getId());
     }
 
     @Override

@@ -6,6 +6,7 @@ export class TestScore {
     firstScore: number;
     secondScore: number;
     finalScore: number;
+    summaryScore: number;
     id_subject: number;
     id_student: number;
     isDeleted: boolean;

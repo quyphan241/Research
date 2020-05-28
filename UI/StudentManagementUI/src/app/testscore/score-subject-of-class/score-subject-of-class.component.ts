@@ -11,7 +11,6 @@ import { TestScoreService } from '../test-score.service';
 })
 export class ScoreSubjectOfClassComponent implements OnInit {
   // add edit
-  name = 'Angular';
   enableEdit = false;
   enableEditIndex = null;
   scoreEditing = false;
@@ -19,24 +18,33 @@ export class ScoreSubjectOfClassComponent implements OnInit {
   id_class: number;
   id_subject: number;
   scores: Observable<TestScore>;
-  id_score: number;
+  id_score=null;
   score: TestScore;
+  id_student : any;
+  firstScore : any;
+  secondScore : any;
+  finalScore : any;
+  summaryScore : any;
 
   //add edit
-  enableEditMethod(e: any, i: any, id_score: number) {
-    console.log(id_score)
+  enableEditMethod(e: any, i: any, id_score: number, firstScore: number, secondScore: number, finalScore: number, summaryScore:number, id_student: number) {
+    console.log(id_score, id_student);
     this.enableEdit = true;
     this.enableEditIndex = i;
     this.scoreEditing = true;
     this.scoreEditingIndex = i;
-    console.log(i, e);
     this.id_score = id_score;
+    this.id_student = id_student;
     this.score = new TestScore();
     this.testScoreService.getScore(this.id_score)
     .subscribe(data => {
       console.log(data)
-      this.score = data;
+      this.firstScore = data.firstScore;
+      this.secondScore = data.secondScore;
+      this.finalScore = data.finalScore;
+      this.summaryScore = data.summaryScore;
     }, error => console.log(error));
+   
   }
   
   constructor(private route: ActivatedRoute, private router: Router, private testScoreService: TestScoreService) { 
@@ -55,14 +63,32 @@ export class ScoreSubjectOfClassComponent implements OnInit {
   onSubmit() {
     this.updateScore();
   }
-
-  updateScore() {
-
+  updateScore(){
+    if(this.id_score!=null){
+    this.score.id_subject = this.id_subject;
+    this.score.id_student = this.id_student;
+    this.score.firstScore = this.firstScore;
+    this.score.secondScore = this.secondScore;
+    this.score.finalScore = this.finalScore;
+    this.score.summaryScore = this.summaryScore;
     this.testScoreService.updateTestScore(this.id_score, this.score)
-    .subscribe(data => console.log(data), error => console.log(error));
+      .subscribe(data => console.log(data), error => console.log(error));
+    }
+    else {
+      this.score.id_student = this.id_student;
+      this.score.id_subject = this.id_subject;
+      this.score.firstScore = this.firstScore;
+      this.score.secondScore = this.secondScore;
+      this.score.finalScore = this.finalScore;
+      this.score.summaryScore = this.summaryScore;
+      this.testScoreService.createScore(this.score)
+      .subscribe(data => console.log(data), error => console.log(error));
+  }
+  this.toList();
   }
 
-  list(){
-    this.router.navigate(['students']);
+  toList(){
+    this.router.navigate(['scores/'+this.id_class+'/'+this.id_subject]);
   }
+  
 }

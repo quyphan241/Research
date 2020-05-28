@@ -70,6 +70,8 @@ public class TestScoreRestController {
         currentTestScore.setSecondScore(testScore.getSecondScore());
         currentTestScore.setFinalScore(testScore.getFinalScore());
         currentTestScore.setSummaryScore(testScore.getSummaryScore());
+        currentTestScore.setId_student(testScore.getId_student());
+        currentTestScore.setId_subject(testScore.getId_subject());
         testScoreRepository.update(currentTestScore);
         return new ResponseEntity<>(currentTestScore, HttpStatus.OK);
     }

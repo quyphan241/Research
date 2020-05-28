@@ -1,9 +1,11 @@
-<div class="panel-body form-group">
+<div [hidden]="submitted">
+<div class="form-group">
   <form (ngSubmit)="onSubmit()">
     <table class="table table-striped">
       <thead>
         <tr>
-          <th>score id</th>
+          <th hidden="hidden">score id</th>
+          <th hidden="hidden">student id</th>
           <th>STT</th>
           <th>Tên</th>
           <th>Điểm 15 phút</th>
@@ -14,44 +16,46 @@
       </thead>
       <tbody>
         <tr *ngFor="let score of scores | async; index as i" class="hover-highlight">
-          <td>{{score.id}}</td>
+          <td hidden="hidden">{{score.id}}</td>
+          <td hidden="hidden">{{score.id_student}}</td>
           <td>{{ i + 1 }}</td>
           <td>{{ score.name_student }}</td>
           <!-- <td>{{ score.firstScore }}</td> -->
           <!-- <td>{{ score.secondScore }}</td>
-        <td>{{ score.finalScore }}</td>
-        <td>{{ score.summaryScore }}</td> -->
+          <td>{{ score.finalScore }}</td>
+          <td>{{ score.summaryScore }}</td> -->
           <td>
-            <input size="1" type="text" class="form-control" [(ngModel)]="score.firstScore"
+            <input  type="number" class="form-control" [(ngModel)]="firstScore" required
               *ngIf="scoreEditing && scoreEditingIndex == i" id="firstScore" name="firstScore" />
             <span *ngIf="!scoreEditing"> {{ score.firstScore }}</span>
           </td>
           <td>
-            <input size="1" type="text" class="form-control" [(ngModel)]="score.secondScore"
+            <input  type="number" class="form-control" [(ngModel)]="secondScore"
               *ngIf="scoreEditing && scoreEditingIndex == i" id="secondScore" name="secondScore" />
             <span *ngIf="!scoreEditing"> {{ score.secondScore }}</span>
           </td>
           <td>
-            <input size="1" type="text" class="form-control" [(ngModel)]="score.finalScore"
-              *ngIf="scoreEditing && scoreEditingIndex == i" id="finalScorefirstScore" name="finalScore" />
-            <span *ngIf="!scoreEditing"> {{ score.firstScore }}</span>
+            <input  type="number" class="form-control" [(ngModel)]="finalScore"
+              *ngIf="scoreEditing && scoreEditingIndex == i" id="finalScore" name="finalScore" />
+            <span *ngIf="!scoreEditing"> {{ score.finalScore }}</span>
           </td>
           <td>
-            <!-- <input size="1" type="text" class="form-control" [(ngModel)]="score.summaryScore"
+            <!-- <input  type="number" class="form-control" [(ngModel)]="summaryScore"
               *ngIf="scoreEditing && scoreEditingIndex == i" id="summaryScore" name="summaryScore" /> -->
-            <span *ngIf="!scoreEditing"> {{ score.summaryScore }}</span>
+            <span *ngIf="!scoreEditing"> {{ (score.firstScore+score.secondScore*3+score.finalScore*6)/10 }}</span>
           </td>
           <td>
-            <button *ngIf="enableEdit && enableEditIndex == i" (click)="enableEdit=false" (click)="scoreEditing=false"
-              class="btn page-secondary-action-btn" ng-click="cancel()">Cancel</button>
-            <!-- <button *ngIf="enableEdit && enableEditIndex == i" id="saveBtn" class="btn page-primary-action-btn"
-              (click)="updateScore(score.id )" type="submit">Save</button> -->
-              <button *ngIf="enableEdit && enableEditIndex == i" class="btn page-primary-action-btn"
-              type="submit">Save</button>
-            <a class="table-row-action edit-action" *ngIf="!enableEdit" (click)="enableEditMethod($event, i,score.id)">edit</a>
+            <i *ngIf="enableEdit && enableEditIndex == i" class="fas fa-check-circle fa-2x" style="margin-right: 10px"
+            (submit)="updateScore($event, score.firstScore, score.secondScore, score.finalScore)" type="submit"></i>
+            <i *ngIf="enableEdit && enableEditIndex == i" (click)="enableEdit=false" (click)="scoreEditing=false"
+              class="far fa-window-close fa-2x" ng-click="cancel()"></i>
+       
+            <a class="far fa-edit fa-2x" *ngIf="!enableEdit" 
+            (click)="enableEditMethod($event, i,score.id, score.firstScore, score.secondScore, score.finalScore, score.summaryScore,score.id_student)"></a>
           </td>
         </tr>
       </tbody>
     </table>
   </form>
+</div>
 </div>
