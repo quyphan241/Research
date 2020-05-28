@@ -1,4 +1,6 @@
-<div [hidden]="submitted">
+<h2>Lớp: {{class.name}}</h2>
+<h2>{{class.name_semester}}</h2>
+<div [hidden]="submitted">  
 <div class="form-group">
   <form (ngSubmit)="onSubmit()">
     <table class="table table-striped">
@@ -25,17 +27,17 @@
           <td>{{ score.finalScore }}</td>
           <td>{{ score.summaryScore }}</td> -->
           <td>
-            <input  type="number" class="form-control" [(ngModel)]="firstScore" required
+            <input  type="number" class="form-control" [(ngModel)]="firstScore" required min="0" max="10"
               *ngIf="scoreEditing && scoreEditingIndex == i" id="firstScore" name="firstScore" />
             <span *ngIf="!scoreEditing"> {{ score.firstScore }}</span>
           </td>
           <td>
-            <input  type="number" class="form-control" [(ngModel)]="secondScore"
+            <input  type="number" class="form-control" [(ngModel)]="secondScore" required min="0" max="10"
               *ngIf="scoreEditing && scoreEditingIndex == i" id="secondScore" name="secondScore" />
             <span *ngIf="!scoreEditing"> {{ score.secondScore }}</span>
           </td>
           <td>
-            <input  type="number" class="form-control" [(ngModel)]="finalScore"
+            <input  type="number" class="form-control" [(ngModel)]="finalScore" required min="0" max="10"
               *ngIf="scoreEditing && scoreEditingIndex == i" id="finalScore" name="finalScore" />
             <span *ngIf="!scoreEditing"> {{ score.finalScore }}</span>
           </td>
@@ -45,11 +47,9 @@
             <span *ngIf="!scoreEditing"> {{ (score.firstScore+score.secondScore*3+score.finalScore*6)/10 }}</span>
           </td>
           <td>
-            <i *ngIf="enableEdit && enableEditIndex == i" class="fas fa-check-circle fa-2x" style="margin-right: 10px"
-            (submit)="updateScore($event, score.firstScore, score.secondScore, score.finalScore)" type="submit"></i>
+            <button *ngIf="enableEdit && enableEditIndex == i" class="fas fa-check-circle fa-2x" style="margin-right: 10px" type="submit" ></button>
             <i *ngIf="enableEdit && enableEditIndex == i" (click)="enableEdit=false" (click)="scoreEditing=false"
               class="far fa-window-close fa-2x" ng-click="cancel()"></i>
-       
             <a class="far fa-edit fa-2x" *ngIf="!enableEdit" 
             (click)="enableEditMethod($event, i,score.id, score.firstScore, score.secondScore, score.finalScore, score.summaryScore,score.id_student)"></a>
           </td>

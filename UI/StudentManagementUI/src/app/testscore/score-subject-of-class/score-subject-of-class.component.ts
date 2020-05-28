@@ -3,6 +3,8 @@ import { Observable } from 'rxjs';
 import { TestScore } from '../testscore';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TestScoreService } from '../test-score.service';
+import { Class } from 'src/app/class/class';
+import { ClassService } from 'src/app/class/class.service';
 
 @Component({
   selector: 'app-score-subject-of-class',
@@ -10,7 +12,9 @@ import { TestScoreService } from '../test-score.service';
   styleUrls: ['./score-subject-of-class.component.css']
 })
 export class ScoreSubjectOfClassComponent implements OnInit {
-  // add edit
+  class: Class;
+
+  // Add/ Edit Score
   enableEdit = false;
   enableEditIndex = null;
   scoreEditing = false;
@@ -26,7 +30,7 @@ export class ScoreSubjectOfClassComponent implements OnInit {
   finalScore : any;
   summaryScore : any;
 
-  //add edit
+  //Add/ Edit Score
   enableEditMethod(e: any, i: any, id_score: number, firstScore: number, secondScore: number, finalScore: number, summaryScore:number, id_student: number) {
     console.log(id_score, id_student);
     this.enableEdit = true;
@@ -47,7 +51,7 @@ export class ScoreSubjectOfClassComponent implements OnInit {
    
   }
   
-  constructor(private route: ActivatedRoute, private router: Router, private testScoreService: TestScoreService) { 
+  constructor(private route: ActivatedRoute, private router: Router, private testScoreService: TestScoreService, private classService: ClassService) { 
   }
 
   ngOnInit() {
@@ -58,10 +62,20 @@ export class ScoreSubjectOfClassComponent implements OnInit {
     this.id_class = this.route.snapshot.params['id_class'];
     this.id_subject = this.route.snapshot.params['id_subject'];
     this.scores = this.testScoreService.getScoreByIdClassAndIdSubject(this.id_class, this.id_subject);
+    this.class = new Class();
+    this.classService.getClass(this.id_class)
+    .subscribe(data => {
+      console.log(data)
+      this.class = data;
+    }, error => console.log(error));
   }
 
   onSubmit() {
     this.updateScore();
+    this.reloadData();
+    this.enableEdit = false;
+    this.scoreEditing = false;
+    
   }
   updateScore(){
     if(this.id_score!=null){
@@ -84,7 +98,6 @@ export class ScoreSubjectOfClassComponent implements OnInit {
       this.testScoreService.createScore(this.score)
       .subscribe(data => console.log(data), error => console.log(error));
   }
-  this.toList();
   }
 
   toList(){
