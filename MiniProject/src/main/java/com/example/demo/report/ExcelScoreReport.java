@@ -11,14 +11,14 @@ import java.util.List;
 
 public class ExcelScoreReport {
     public static ByteArrayInputStream scoresToExcel(List<TestScore> testScores) throws IOException {
-        String[] COLUMNs = {"Id", "Tên học sinh", "Điểm 15 phút", "Điểm 1 tiết", "Điểm cuối kỳ","Điểm trung bình"};
+        String[] COLUMNs = {"Số thứ tự","Tên học sinh ", "Điểm 15 phút", "Điểm 1 tiết", "Điểm cuối kỳ", "Điểm trung binh"};
         try(
                 Workbook workbook = new XSSFWorkbook();
                 ByteArrayOutputStream out = new ByteArrayOutputStream();
         ){
             CreationHelper createHelper = workbook.getCreationHelper();
 
-            Sheet sheet = workbook.createSheet("testScore");
+            Sheet sheet = workbook.createSheet("TestScore");
 
             Font headerFont = workbook.createFont();
             headerFont.setBold(true);
@@ -44,11 +44,11 @@ public class ExcelScoreReport {
             int rowIdx = 1;
             for (TestScore testScore : testScores) {
                 Row row = sheet.createRow(rowIdx++);
-                row.createCell(0).setCellValue(testScore.getId());
-                row.createCell(1).setCellValue(testScore.getFirstScore());
-                row.createCell(2).setCellValue(testScore.getSecondScore());
-                row.createCell(3).setCellValue(testScore.getFinalScore());
-
+                row.createCell(0).setCellValue(rowIdx-1);
+                row.createCell(1).setCellValue(testScore.getName_student());
+                row.createCell(2).setCellValue(testScore.getFirstScore());
+                row.createCell(3).setCellValue(testScore.getSecondScore());
+                row.createCell(4).setCellValue(testScore.getFinalScore());
             }
 
             workbook.write(out);

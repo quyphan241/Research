@@ -6,6 +6,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SemesterService } from 'src/app/semester/semester.service';
 import { StudentService } from '../student.service';
 import { ClassService } from 'src/app/class/class.service';
+import { DatePipe } from '@angular/common';
+import {formatDate } from '@angular/common';
+
 
 @Component({
   selector: 'app-update-student',
@@ -19,7 +22,7 @@ export class UpdateStudentComponent implements OnInit {
   classes: Observable<Class[]>;
 
 
-  constructor(private route: ActivatedRoute,private router: Router, private classService: ClassService,
+  constructor(private route: ActivatedRoute,private router: Router, private classService: ClassService, private datePipe: DatePipe,
     private studentService: StudentService) { }
 
  ngOnInit() {
@@ -31,7 +34,9 @@ export class UpdateStudentComponent implements OnInit {
         console.log(data)
         this.student = data;
       }, error => console.log(error));
+    this.student.birthDate = new Date(this.student.birthDate);
   }
+  
 
   updateStudent() {
     this.studentService.updateStudent(this.id, this.student)

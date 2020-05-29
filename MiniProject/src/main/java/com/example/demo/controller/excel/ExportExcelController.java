@@ -31,21 +31,20 @@ public class ExportExcelController {
         writeExcel( testScores, excelFilePath);
     }
 
-    @GetMapping(value = "/testscores/report/{id_class}/{id_subject}")
-    public ResponseEntity<InputStreamResource> excelCustomersReport( @PathVariable Long id_class, @PathVariable Long id_subject) throws IOException {
+    @GetMapping(value = "/scores/report/{id_class}/{id_subject}")
+    public ResponseEntity<InputStreamResource> excelCustomersReport(@PathVariable Long id_class, @PathVariable Long id_subject) throws IOException {
         List<TestScore> testScores = (List<TestScore>) testScoreRepository.findAllByIdClassAndIdSubject(id_class, id_subject);
+
         ByteArrayInputStream in = ExcelScoreReport.scoresToExcel(testScores);
         // return IOUtils.toByteArray(in);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Disposition", "attachment; filename=TestScore.xlsx");
+        headers.add("Content-Disposition", "attachment; filename=scores.xlsx");
 
         return ResponseEntity
                 .ok()
                 .headers(headers)
                 .body(new InputStreamResource(in));
     }
-
-
 
 }

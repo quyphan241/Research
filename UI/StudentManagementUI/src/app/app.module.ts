@@ -23,6 +23,7 @@ import { StudentDetailsComponent } from './student/student-details/student-detai
 import { UpdateStudentComponent } from './student/update-student/update-student.component';
 import { StudentListComponent } from './student/student-list/student-list.component';
 import { ScoreSubjectOfClassComponent } from './testscore/score-subject-of-class/score-subject-of-class.component';
+import { DatePipe } from '@angular/common';
 
 
 
@@ -61,7 +62,9 @@ import { ScoreSubjectOfClassComponent } from './testscore/score-subject-of-class
     HttpClientModule,
     DataTablesModule,
   ],
-  providers: [],
+  providers: [
+    DatePipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
