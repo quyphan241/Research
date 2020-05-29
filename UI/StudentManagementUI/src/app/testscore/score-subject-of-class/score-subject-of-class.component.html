@@ -1,5 +1,7 @@
 <h2>Lớp: {{class.name}}</h2>
 <h2>{{class.name_semester}}</h2>
+<h2>Môn học: {{subject.name}}</h2>
+
 <div [hidden]="submitted">  
 <div class="form-group">
   <form (ngSubmit)="onSubmit()">
@@ -33,7 +35,7 @@
           </td>
           <td>
             <input  type="number" class="form-control" [(ngModel)]="secondScore" required min="0" max="10"
-              *ngIf="scoreEditing && scoreEditingIndex == i" id="secondScore" name="secondScore" />
+              *ngIf="scoreEditing && scoreEditingIndex == i" id="secondScore" name="secondScore"/>
             <span *ngIf="!scoreEditing&&score.secondScore!=-1"> {{ score.secondScore }}</span>
           </td>
           <td>

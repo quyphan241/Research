@@ -89,14 +89,6 @@ public class JDBCTestScoreRepository implements TestScoreRepository {
         List<TestScore> testScores = new ArrayList<>();
         List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql);
         for (Map row : rows) {
-//            TestScore obj = new TestScore();
-//            obj.setId_student((Long) row.get("id_student"));
-//            obj.setName_student((String) row.get("name_student"));
-//            obj.setFirstScore((double) row.get("firstscore"));
-//            obj.setSecondScore((double) row.get("secondscore"));
-//            obj.setFinalScore((double) row.get("finalscore"));
-//            obj.setSummaryScore((double) row.get("summaryscore"));
-//            testScores.add(obj);
             if(row.get("id_student")!=null && row.get("firstscore")!=null){
                 TestScore obj = new TestScore();
                 obj.setId((Long) row.get("id_score"));

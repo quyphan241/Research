@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+
+import { Observable, Subject } from 'rxjs';
 import { TestScore } from '../testscore';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TestScoreService } from '../test-score.service';
 import { Class } from 'src/app/class/class';
 import { ClassService } from 'src/app/class/class.service';
-
+import { SubjectService } from 'src/app/subject/subject.service';
 @Component({
   selector: 'app-score-subject-of-class',
   templateUrl: './score-subject-of-class.component.html',
@@ -13,8 +14,9 @@ import { ClassService } from 'src/app/class/class.service';
 })
 export class ScoreSubjectOfClassComponent implements OnInit {
   class: Class;
+  subject: any;
 
-  // Add/ Edit Score
+  // Add Edit Score
   enableEdit = false;
   enableEditIndex = null;
   scoreEditing = false;
@@ -51,7 +53,8 @@ export class ScoreSubjectOfClassComponent implements OnInit {
    
   }
   
-  constructor(private route: ActivatedRoute, private router: Router, private testScoreService: TestScoreService, private classService: ClassService) { 
+  constructor(private route: ActivatedRoute, private router: Router, private testScoreService: TestScoreService,
+                 private classService: ClassService,private subjectService: SubjectService) { 
   }
 
   ngOnInit() {
@@ -61,6 +64,11 @@ export class ScoreSubjectOfClassComponent implements OnInit {
   reloadData() {
     this.id_class = this.route.snapshot.params['id_class'];
     this.id_subject = this.route.snapshot.params['id_subject'];
+    this.subjectService.getSubject(this.id_subject)
+    .subscribe(data => {
+      console.log(data)
+      this.subject = data;
+    }, error => console.log(error));    
     this.scores = this.testScoreService.getScoreByIdClassAndIdSubject(this.id_class, this.id_subject);
     this.class = new Class();
     this.classService.getClass(this.id_class)
@@ -72,10 +80,10 @@ export class ScoreSubjectOfClassComponent implements OnInit {
 
   onSubmit() {
     this.updateScore();
-    this.reloadData();
     this.enableEdit = false;
     this.scoreEditing = false;
-    
+    this.reloadData();
+    this.ngOnInit();
   }
   updateScore(){
     if(this.id_score!=null){
@@ -103,5 +111,4 @@ export class ScoreSubjectOfClassComponent implements OnInit {
   toList(){
     this.router.navigate(['scores/'+this.id_class+'/'+this.id_subject]);
   }
-  
 }

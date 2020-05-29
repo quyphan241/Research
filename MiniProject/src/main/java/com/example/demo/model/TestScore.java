@@ -16,6 +16,14 @@ public class TestScore {
         this.id_subject = id_subject;
     }
 
+    public TestScore(Long id, double firstScore, double secondScore, double finalScore, String name_student) {
+        this.id = id;
+        this.firstScore = firstScore;
+        this.secondScore = secondScore;
+        this.finalScore = finalScore;
+        this.name_student = name_student;
+    }
+
     public TestScore() {
     }
     public Long getId() {
