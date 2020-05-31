@@ -28,6 +28,9 @@
         <td>{{student.birthDate}}</td>
         <td>{{student.gender}}</td>
         <td>{{student.studentCode}}</td>
+        <td>
+          <i type="button" (click)="studentDetails(student.id)" class="fas fa-info-circle fa-1.5x" style="margin-left: 20px">Chi tiết</i>                
+        </td>
       </tr>
     </tbody>
   </table>

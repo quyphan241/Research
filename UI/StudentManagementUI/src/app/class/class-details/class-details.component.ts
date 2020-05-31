@@ -35,4 +35,8 @@ export class ClassDetailsComponent implements OnInit {
     this.router.navigate(['classes']);
   }
 
+  studentDetails(id : number){
+    this.router.navigate(['students/details', id]);
+  }
+
 }
