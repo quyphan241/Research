@@ -20,6 +20,7 @@ export class UpdateStudentComponent implements OnInit {
   id: number;
   student: Student;
   classes: Observable<Class[]>;
+  birthDate: string;
 
 
   constructor(private route: ActivatedRoute,private router: Router, private classService: ClassService, private datePipe: DatePipe,
@@ -34,7 +35,9 @@ export class UpdateStudentComponent implements OnInit {
         console.log(data)
         this.student = data;
       }, error => console.log(error));
-    this.student.birthDate = new Date(this.student.birthDate);
+    // this.student.birthDate = this.datePipe.transform('1995-01-23T17:00:00.000+0000', 'yyyy-MM-dd');
+    this.student.birthDate =  formatDate('1995-01-23T17:00:00.000+0000', 'yyyy-MM-dd', 'en-US')
+    
   }
   
 

@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Subject } from './../../subject/subject';
+import { Component, OnInit, Inject } from '@angular/core';
 
-import { Observable, Subject } from 'rxjs';
+import { Observable} from 'rxjs';
 import { TestScore } from '../testscore';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TestScoreService } from '../test-score.service';
 import { Class } from 'src/app/class/class';
 import { ClassService } from 'src/app/class/class.service';
 import { SubjectService } from 'src/app/subject/subject.service';
+import { DOCUMENT } from '@angular/common';
 @Component({
   selector: 'app-score-subject-of-class',
   templateUrl: './score-subject-of-class.component.html',
@@ -14,7 +16,8 @@ import { SubjectService } from 'src/app/subject/subject.service';
 })
 export class ScoreSubjectOfClassComponent implements OnInit {
   class: Class;
-  subject: any;
+  subject: Subject;
+  subjects: Observable<Subject>;
 
   // Add Edit Score
   enableEdit = false;
@@ -54,7 +57,8 @@ export class ScoreSubjectOfClassComponent implements OnInit {
   }
   
   constructor(private route: ActivatedRoute, private router: Router, private testScoreService: TestScoreService,
-                 private classService: ClassService,private subjectService: SubjectService) { 
+                 private classService: ClassService,private subjectService: SubjectService,
+                 @Inject(DOCUMENT) private document: Document) { 
   }
 
   ngOnInit() {
@@ -62,6 +66,7 @@ export class ScoreSubjectOfClassComponent implements OnInit {
   }
 
   reloadData() {
+    this.subjects = this.subjectService.getSubjectsList();
     this.id_class = this.route.snapshot.params['id_class'];
     this.id_subject = this.route.snapshot.params['id_subject'];
     this.subjectService.getSubject(this.id_subject)
@@ -108,7 +113,24 @@ export class ScoreSubjectOfClassComponent implements OnInit {
   }
   }
 
-  toList(){
+  changeSubject(value){
+    this.id_subject = value;
+    this.subjectService.getSubject(this.id_subject)
+    .subscribe(data => {
+      console.log(data)
+      this.subject = data;
+    }, error => console.log(error));    
+    this.scores = this.testScoreService.getScoreByIdClassAndIdSubject(this.id_class, this.id_subject);
+    this.class = new Class();
+    this.classService.getClass(this.id_class)
+    .subscribe(data => {
+      console.log(data)
+      this.class = data;
+    }, error => console.log(error));
     this.router.navigate(['scores/'+this.id_class+'/'+this.id_subject]);
   }
+
+  exportExcel(): void {
+    this.document.location.href = 'http://localhost:8080/scores/report/'+this.id_class+'/'+this.id_subject;
+}
 }

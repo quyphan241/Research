@@ -81,7 +81,7 @@ public class ClassResultExport {
                         row.createCell(2).setCellValue(testScore.getFirstScore());
                         row.createCell(3).setCellValue(testScore.getSecondScore());
                         row.createCell(4).setCellValue(testScore.getFinalScore());
-                        row.createCell(5).setCellFormula(row.getCell(2).getCellFormula()+row.getCell(3).getCellFormula());
+                        row.createCell(5).setCellFormula(row.getCell(2).getCellFormula() + row.getCell(3).getCellFormula());
 //                        double summaryScore = (testScore.getFirstScore()
 //                                + testScore.getSecondScore() * 3 + testScore.getFinalScore() * 6) / 10;
 //                        row.createCell(5).setCellValue(summaryScore);

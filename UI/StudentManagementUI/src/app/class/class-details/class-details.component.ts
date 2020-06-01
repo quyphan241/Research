@@ -39,4 +39,8 @@ export class ClassDetailsComponent implements OnInit {
     this.router.navigate(['students/details', id]);
   }
 
+  addStudent() {
+    this.router.navigate(['students/add']);
+  }
+
 }

@@ -10,6 +10,7 @@ export class TestScoreService {
   private testScoreUrl = 'http://localhost:8080/testScores';
   private baseUrl = 'http://localhost:8080/scores';
   private studentUrl = 'http://localhost:8080/students/';
+  private reportExcelUrl='http://localhost:8080/scores/report/';
 
   constructor(private http: HttpClient) { }
 
@@ -32,4 +33,6 @@ export class TestScoreService {
   createScore(score: Object): Observable<Object> {
     return this.http.post(`${this.testScoreUrl}`, score);
   } 
+
+  
 }

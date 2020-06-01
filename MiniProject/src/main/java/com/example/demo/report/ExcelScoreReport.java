@@ -14,7 +14,7 @@ import java.util.List;
 public class ExcelScoreReport {
     public static ByteArrayInputStream scoresToExcel(List<TestScore> testScores, Class _class, Subject subject) throws IOException {
         String[] COLUMNs = {"Số thứ tự","Tên học sinh ", "Điểm 15 phút", "Điểm 1 tiết", "Điểm cuối kỳ", "Điểm trung bình"};
-        String[] classCOLS = {"Lớp","Môn học"};
+        String[] classCOLS = {"Lớp","Học kỳ","Môn học"};
 
         try(
                 Workbook workbook = new XSSFWorkbook();
@@ -89,7 +89,8 @@ public class ExcelScoreReport {
             //Class& Subject
             Row classSubjectRow = sheet.createRow(1);
             classSubjectRow.createCell(0).setCellValue(_class.getName());
-            classSubjectRow.createCell(1).setCellValue(subject.getName());
+            classSubjectRow.createCell(1).setCellValue(_class.getName_semester());
+            classSubjectRow.createCell(2).setCellValue(subject.getName());
 
             workbook.write(out);
             return new ByteArrayInputStream(out.toByteArray());

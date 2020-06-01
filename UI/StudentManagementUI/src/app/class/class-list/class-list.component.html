@@ -1,7 +1,8 @@
 <div class="panel panel-primary">
     <div Class="panel-heading">
-      <h2>class List</h2>
-      <button (click)="addClass()"  class="fas fa-plus-circle fa-2x"> Create</button>
+      <h2>Danh sách lớp học</h2>
+      <button (click)="addClass()"  class="btn btn-success" style="margin-right:710px"> Tạo lớp học</button>
+      <input type="text" placeholder="Search" [(ngModel)]="searchText">
     </div>
     <div class="panel-body">
       <table class="table table-striped">
@@ -12,7 +13,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let class of classes | async">
+          <tr *ngFor="let class of classes | async | filter:searchText| paginate: { itemsPerPage: 5, currentPage: p }">
             <td>{{class.name}}</td>
             <td>{{class.name_semester}}</td>           
             <td>
@@ -22,6 +23,7 @@
             </td>
           </tr>
         </tbody>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
       </table>
     </div>
   </div>

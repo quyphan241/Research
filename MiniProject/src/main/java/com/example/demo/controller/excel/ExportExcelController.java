@@ -50,7 +50,7 @@ public class ExportExcelController {
         // return IOUtils.toByteArray(in);
 
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Disposition", "attachment; filename=scores.xlsx");
+        headers.add("Content-Disposition", "attachment; filename="+_class.getName()+subject.getName()+".xlsx");
 
         return ResponseEntity
                 .ok()

@@ -4,10 +4,11 @@ import { Class } from '../class/class';
 export class Student {
     id: number;
     name: string;
-    birthDate: Date;
+    birthDate: string;
     gender: string;
     studentCode: number;
     id_class: number;
+    name_class: string;
     isDeleted: boolean;
     class: Class;
 }

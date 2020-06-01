@@ -7,8 +7,8 @@
     </div>
     <div class="form-group">
       <label for="name_class">Lớp</label>
-      <select  [(ngModel)]="student.id_class"  name="id_class" class="form-control" value="student.class_name" >
-        <option *ngFor="let class of classes | async" type="text" value ={{class.id}} [selected]="student.name_class">{{class.name}}
+      <select  [(ngModel)]="student.id_class"  name="id_class" class="form-control" >
+        <option [selected]="student.name_class" *ngFor="let class of classes | async" type="text" value ={{class.id}} >{{class.name}}
         </option>
       </select>
     </div>

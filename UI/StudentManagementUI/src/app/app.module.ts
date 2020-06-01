@@ -24,6 +24,8 @@ import { UpdateStudentComponent } from './student/update-student/update-student.
 import { StudentListComponent } from './student/student-list/student-list.component';
 import { ScoreSubjectOfClassComponent } from './testscore/score-subject-of-class/score-subject-of-class.component';
 import { DatePipe } from '@angular/common';
+import {Ng2SearchPipeModule} from 'ng2-search-filter';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 
@@ -61,6 +63,8 @@ import { DatePipe } from '@angular/common';
     FormsModule,
     HttpClientModule,
     DataTablesModule,
+    Ng2SearchPipeModule,
+    NgxPaginationModule
   ],
   providers: [
     DatePipe

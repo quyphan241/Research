@@ -1,7 +1,22 @@
 <h2>Lớp: {{class.name}}</h2>
-<h2>{{class.name_semester}}</h2>
-<h2>Môn học: {{subject.name}}</h2>
-
+<h5>{{class.name_semester}}</h5>
+<h5>Môn học: {{subject.name}}</h5>
+<div class="row">
+  <div class="col-6">
+    <button  (click)="exportExcel()" class="btn btn-primary" style="margin-bottom: 20px; margin-top:20px">Xuất excel</button>
+  </div>
+  <div class="col-3" style="right: 0;">
+  </div>
+  <div class="col-3" style="right:0">
+    <select  [(ngModel)]="id_subject"  #mySelect name="id_subject" class="form-control"  (change)="changeSubject(mySelect.value)" 
+    style="margin-bottom: 20px; margin-top:20px">
+      <option *ngFor="let subject of subjects | async" type="text" value ={{subject.id}}>
+        {{subject.name}}
+      </option>
+    </select>
+    </div> 
+  </div>
+  <input type="text" placeholder="Search" [(ngModel)]="searchText">
 <div [hidden]="submitted">  
 <div class="form-group">
   <form (ngSubmit)="onSubmit()">
@@ -19,7 +34,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let score of scores | async; index as i" class="hover-highlight">
+        <tr *ngFor="let score of scores | async | filter:searchText; index as i" class="hover-highlight">
           <td hidden="hidden">{{score.id}}</td>
           <td hidden="hidden">{{score.id_student}}</td>
           <td>{{ i + 1 }}</td>

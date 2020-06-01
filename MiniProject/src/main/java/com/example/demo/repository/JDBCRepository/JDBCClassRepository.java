@@ -14,6 +14,7 @@ import java.util.Optional;
 
 @Repository
 public class JDBCClassRepository implements ClassRepository {
+
     @Autowired
     private JdbcTemplate jdbcTemplate;
 

@@ -12,6 +12,8 @@ import { ClassService } from '../class.service';
 })
 export class ClassListComponent implements OnInit {
 
+  p:number = 1;
+
   classes: Observable<Class[]>
   
   constructor(private classService: ClassService,

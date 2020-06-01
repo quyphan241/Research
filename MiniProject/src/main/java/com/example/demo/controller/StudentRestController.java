@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,7 +35,6 @@ public class StudentRestController {
     public ResponseEntity<Student> getStudentById(
             @PathVariable("id") Long id) {
         Optional<Student> student = Optional.ofNullable(studentRepository.findById(id));
-
         if (!student.isPresent()) {
             return new ResponseEntity<>(student.get(),
                     HttpStatus.NO_CONTENT);
