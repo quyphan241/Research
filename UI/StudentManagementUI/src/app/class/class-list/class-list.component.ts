@@ -49,6 +49,10 @@ export class ClassListComponent implements OnInit {
     this.router.navigate(['classes/details', id]);
   }
 
+  studyResult(id: number){
+    this.router.navigate(['scores/'+id+'/1'])
+  }
+
   opensweetalert()
   {
     Swal.fire({

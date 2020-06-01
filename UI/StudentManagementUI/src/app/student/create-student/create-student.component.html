@@ -1,4 +1,4 @@
-<h3>Create Student</h3>
+<h3>Tạo mới học sinh</h3>
 <div [hidden]="submitted" style="width: 400px;">
   <form (ngSubmit)="onSubmit()">
     <div class="form-group">
@@ -20,7 +20,7 @@
       <label for="name">Mã học sinh</label>
       <input type="number" class="form-control" id="studenCode" required [(ngModel)]="student.studentCode" name="studentCode">       
     </div>
-    <button type="submit" class="fas fa-check-square"> Submit</button>
-    <button (click)="gotoList()" class="fas fa-backward" style="margin-left: 10px"> Back</button>
+    <button type="submit" class="btn btn-success"> Xác nhận</button>
+    <button (click)="gotoList()" class="btn btn-secondary" style="margin-left: 10px"> Hủy</button>
   </form>
 </div>

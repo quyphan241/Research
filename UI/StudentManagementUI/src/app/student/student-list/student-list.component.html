@@ -1,7 +1,8 @@
 <div class="panel panel-primary">
     <div Class="panel-heading">
-      <h2>Student List</h2>
-      <button (click)="addStudent()"  class="fas fa-plus-circle fa-2x"> Create</button>
+      <h2>Danh sách học sinh</h2>
+      <button (click)="addStudent()"  class="btn btn-success" style="margin-top:20px"> Tạo mới</button>
+      <input class="float-right" type="text" placeholder="Search" [(ngModel)]="searchText" style="margin-top:20px">
     </div>
     <div class="panel-body">
       <table class="table table-striped">
@@ -15,7 +16,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let student of students | async">
+          <tr *ngFor="let student of students | async| filter:searchText">
             <td>{{student.name}}</td>
             <td>{{student.name_class}}</td>
             <td>{{student.birthDate}}</td>
