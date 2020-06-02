@@ -117,14 +117,12 @@ export class ScoreSubjectOfClassComponent implements OnInit {
     this.id_subject = value;
     this.subjectService.getSubject(this.id_subject)
     .subscribe(data => {
-      console.log(data)
       this.subject = data;
     }, error => console.log(error));    
     this.scores = this.testScoreService.getScoreByIdClassAndIdSubject(this.id_class, this.id_subject);
     this.class = new Class();
     this.classService.getClass(this.id_class)
     .subscribe(data => {
-      console.log(data)
       this.class = data;
     }, error => console.log(error));
     this.router.navigate(['scores/'+this.id_class+'/'+this.id_subject]);

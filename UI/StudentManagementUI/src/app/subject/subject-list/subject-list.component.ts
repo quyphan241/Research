@@ -62,31 +62,30 @@ export class SubjectListComponent implements OnInit {
   {
    Swal.fire('Oops...', 'Something went wrong!', 'error')
   }
-  
+
   opensweetalertcst(id: number){
     Swal.fire({
-      title: 'Are you sure?',
-      text: 'You will not be able to recover this imaginary file!',
+      title: 'Bạn chắc chắn chưa?',
+      text: 'Bạn sẽ không thể khôi phục hành động này',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, keep it'
+      confirmButtonText: 'Xác nhận',
+      cancelButtonText: 'Hủy bỏ'
     }).then((result) => {
       if (result.value) {
       this.deleteSubject(id);  
       Swal.fire(
-        'Deleted!',
-        'Your imaginary file has been deleted.',
+        'Đã xóa!',
+        '',
         'success'
       )
       } else if (result.dismiss === Swal.DismissReason.cancel) {
       Swal.fire(
-        'Cancelled',
-        'Your imaginary file is safe :)',
+        'Đã hủy bỏ',
+        '',
         'error'
       )
       }
     })
   }
-
 }

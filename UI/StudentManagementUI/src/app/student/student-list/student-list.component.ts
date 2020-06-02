@@ -11,9 +11,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./student-list.component.css']
 })
 export class StudentListComponent implements OnInit {
-
-  students: Observable<Student[]>
   
+  students: Observable<Student[]>;
+  p: number = 1;
   constructor(private studentService: StudentService,
     private router: Router ) { }
 
@@ -61,24 +61,24 @@ export class StudentListComponent implements OnInit {
   
   opensweetalertcst(id: number){
     Swal.fire({
-      title: 'Are you sure?',
-      text: 'You will not be able to recover this imaginary file!',
+      title: 'Bạn chắc chắn chưa?',
+      text: 'Bạn sẽ không thể khôi phục hành động này',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, keep it'
+      confirmButtonText: 'Xác nhận',
+      cancelButtonText: 'Hủy bỏ'
     }).then((result) => {
       if (result.value) {
       this.deleteStudent(id);  
       Swal.fire(
-        'Deleted!',
-        'Your imaginary file has been deleted.',
+        'Đã xóa!',
+        '',
         'success'
       )
       } else if (result.dismiss === Swal.DismissReason.cancel) {
       Swal.fire(
-        'Cancelled',
-        'Your imaginary file is safe :)',
+        'Đã hủy bỏ',
+        '',
         'error'
       )
       }

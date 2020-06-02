@@ -1,6 +1,6 @@
 <h3>Tạo mới học kỳ</h3>
 <div [hidden]="submitted" style="width: 400px;">
-  <form (ngSubmit)="onSubmit()">
+  <form ngNativeValidate (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="name">Name</label>
       <input type="text" class="form-control" id="name" required [(ngModel)]="semester.name" name="name">

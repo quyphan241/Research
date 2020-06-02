@@ -16,7 +16,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let student of students | async| filter:searchText">
+          <tr *ngFor="let student of students | async| filter:searchText| paginate: { itemsPerPage: 9, currentPage: p }">
             <td>{{student.name}}</td>
             <td>{{student.name_class}}</td>
             <td>{{student.birthDate}}</td>
@@ -29,6 +29,7 @@
             </td>
           </tr>
         </tbody>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
       </table>
     </div>
   </div>
