@@ -10,7 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,12 +35,16 @@ public class StudentRestController {
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Student> getStudentById(
-            @PathVariable("id") Long id) {
+            @PathVariable("id") Long id) throws ParseException {
         Optional<Student> student = Optional.ofNullable(studentRepository.findById(id));
         if (!student.isPresent()) {
             return new ResponseEntity<>(student.get(),
                     HttpStatus.NO_CONTENT);
         }
+//        String date =new SimpleDateFormat("yyyy-MM-dd").format(student.get().getBirthDate());
+//        Date date1= new SimpleDateFormat("yyyy-MM-dd").parse(date);
+//        System.out.println(date1);
+//        student.get().setBirthDate(date1);
         return new ResponseEntity<>(student.get(), HttpStatus.OK);
     }
 

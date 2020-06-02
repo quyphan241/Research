@@ -18,9 +18,7 @@ export class UpdateSubjectComponent implements OnInit {
 
  ngOnInit() {
     this.subject = new Subject();
-
-    this.id = this.route.snapshot.params['id'];
-    
+    this.id = this.route.snapshot.params['id'];  
     this.subjectService.getSubject(this.id)
       .subscribe(data => {
         console.log(data)

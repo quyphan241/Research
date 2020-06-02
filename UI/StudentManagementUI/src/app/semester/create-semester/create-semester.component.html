@@ -3,7 +3,7 @@
   <form ngNativeValidate (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="name">Name</label>
-      <input type="text" class="form-control" id="name" required [(ngModel)]="semester.name" name="name">
+      <input type="text" class="form-control" id="name" required [(ngModel)]="semester.name" name="name" maxlength="5" oninput="validity.valid||(value='');">
     </div>
     <button type="submit" class="btn btn-success"> Xác nhận</button>
     <button (click)="gotoList()" class="btn btn-secondary" style="margin-left: 10px"> Hủy</button>

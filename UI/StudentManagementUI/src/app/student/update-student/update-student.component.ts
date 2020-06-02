@@ -35,12 +35,11 @@ export class UpdateStudentComponent implements OnInit {
         console.log(data)
         this.student = data;
       }, error => console.log(error));
-    // this.student.birthDate = this.datePipe.transform('1995-01-23T17:00:00.000+0000', 'yyyy-MM-dd');
-    this.student.birthDate =  formatDate('1995-01-23T17:00:00.000+0000', 'yyyy-MM-dd', 'en-US')
+    this.student.birthDate = this.datePipe.transform(this.student.birthDate, 'yyyy-MM-dd');
+    // this.student.birthDate = formatDate('1995-01-23T17:00:00.000+0000', 'yyyy-MM-dd', 'en-US')
     
   }
   
-
   updateStudent() {
     this.studentService.updateStudent(this.id, this.student)
       .subscribe(data => console.log(data), error => console.log(error));

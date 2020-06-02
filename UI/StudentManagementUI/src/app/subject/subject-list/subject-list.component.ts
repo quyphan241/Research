@@ -24,6 +24,7 @@ export class SubjectListComponent implements OnInit {
 
   reloadData() {
     this.subjects = this.subjectService.getSubjectsList();
+    
   }
 
   deleteSubject(id: number) {

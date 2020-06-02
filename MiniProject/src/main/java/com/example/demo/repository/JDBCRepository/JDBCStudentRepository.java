@@ -40,7 +40,7 @@ public class JDBCStudentRepository implements StudentRepository {
     @Override
     public List<Student> findAll() {
         String sql= "SELECT s.id as id, s.name as name, s.birthdate as birthdate, s.gender as gender,  s.student_code as student_code, c.name as name_class FROM students s" +
-                " INNER JOIN classes c ON s.id_class= c.id WHERE s.isDeleted=0";
+                " INNER JOIN classes c ON s.id_class= c.id WHERE s.isDeleted=0 ORDER BY name_class, name";
         List<Student> students = new ArrayList<>();
         List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql);
         for (Map row : rows) {
@@ -70,7 +70,7 @@ public class JDBCStudentRepository implements StudentRepository {
     @Override
     public List<Student> findAllByIdClass(Long id) {
         String sql= "SELECT s.id as id, s.name as name, s.birthdate as birthdate, s.gender as gender,  s.student_code as student_code, c.name as name_class FROM students s" +
-                " INNER JOIN classes c ON s.id_class= c.id WHERE s.isDeleted=0 AND id_class =" + id;
+                " INNER JOIN classes c ON s.id_class= c.id WHERE s.isDeleted=0 AND id_class =" + id + "ORDER BY name";
         List<Student> students = new ArrayList<>();
         List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql);
         for (Map row : rows) {

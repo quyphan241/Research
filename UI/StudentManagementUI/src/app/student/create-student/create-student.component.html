@@ -7,7 +7,7 @@
       <label for="name_class">Class</label>
       <select  [(ngModel)]="student.id_class"  name="id_class" class="form-control" required>
         <option *ngFor="let class of classes | async" type="text" 
-               value ={{class.id}}>{{class.name}}
+               value ={{class.id}}>{{class.name}} {{class.name_semester}}
         </option>
       </select>
       <label for="name">Ngày sinh</label>
@@ -16,9 +16,11 @@
       <select  [(ngModel)]="student.gender"  name="gender" class="form-control" required >
         <option type="text" value="Nam">Nam</option>
         <option type="text" value="Nữ">Nữ</option>
+        <option type="text" value="Khác">Khác</option>
       </select>
       <label for="name">Mã học sinh</label>
-      <input type="number" class="form-control" id="studenCode" required [(ngModel)]="student.studentCode" name="studentCode">       
+      <input type="number" class="form-control" id="studenCode" required [(ngModel)]="student.studentCode" name="studentCode" min="0" step="1"
+      onKeyPress="if(this.value.length==9) return false;">       
     </div>
     <button type="submit" class="btn btn-success"> Xác nhận</button>
     <button (click)="gotoList()" class="btn btn-secondary" style="margin-left: 10px"> Hủy</button>

@@ -5,6 +5,8 @@ import { Class } from 'src/app/class/class';
 import { StudentService } from '../student.service';
 import { ClassService } from 'src/app/class/class.service';
 import { Router } from '@angular/router';
+import {Location} from '@angular/common';
+
 
 @Component({
   selector: 'app-create-student',
@@ -17,7 +19,7 @@ export class CreateStudentComponent implements OnInit {
   classes: Observable<Class[]>
   submitted = false;
 
-  constructor(private studentService: StudentService,private classService: ClassService,
+  constructor(private studentService: StudentService,private classService: ClassService, private _location: Location,
     private router: Router) { }
 
   ngOnInit() {
@@ -46,6 +48,6 @@ export class CreateStudentComponent implements OnInit {
   }
 
   gotoList() {
-    this.router.navigate(['/students']);
+    this._location.back();
   }
 }

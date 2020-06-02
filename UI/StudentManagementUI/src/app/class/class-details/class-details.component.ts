@@ -43,4 +43,7 @@ export class ClassDetailsComponent implements OnInit {
     this.router.navigate(['students/add']);
   }
 
+  studyResult(id: number){
+    this.router.navigate(['scores/'+id+'/1'])
+  }
 }
