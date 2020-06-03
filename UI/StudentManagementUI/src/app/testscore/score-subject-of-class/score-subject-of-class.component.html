@@ -1,7 +1,9 @@
+<div class="float-right">
 <h2>Lớp: {{class.name}}</h2>
 <h5>{{class.name_semester}}</h5>
 <h5>Môn học: {{subject.name}}</h5>
-<div >
+</div>
+<div style="margin-top:100px">
     <button  (click)="exportExcel()" class="btn btn-primary" style="margin-bottom: 20px; margin-top:20px">Xuất excel</button>
 </div>
   <div class="row">
@@ -49,12 +51,12 @@
             <span *ngIf="!scoreEditing&&score.firstScore!=-1"> {{ score.firstScore }}</span>
           </td>
           <td>
-            <input  type="number" class="form-control" [(ngModel)]="secondScore"  min="0" max="10" onKeyPress="if(this.value.length==4) return false;"
+            <input  type="number" class="form-control" [(ngModel)]="secondScore"  min="0" max="10" step=".01" onKeyPress="if(this.value.length==4) return false;"
               *ngIf="scoreEditing && scoreEditingIndex == i" id="secondScore" name="secondScore"/>
             <span *ngIf="!scoreEditing&&score.secondScore!=-1"> {{ score.secondScore }}</span>
           </td>
           <td>
-            <input  type="number" class="form-control" [(ngModel)]="finalScore"  min="0" max="10" onKeyPress="if(this.value.length==4) return false;"
+            <input  type="number" class="form-control" [(ngModel)]="finalScore"  min="0" max="10" step=".01" onKeyPress="if(this.value.length==4) return false;"
               *ngIf="scoreEditing && scoreEditingIndex == i" id="finalScore" name="finalScore" />
             <span *ngIf="!scoreEditing&&score.finalScore!=-1"> {{ score.finalScore }}</span>
           </td>

@@ -63,7 +63,8 @@ public class JDBCTestScoreRepository implements TestScoreRepository {
     public List<TestScore> findAllByIdStudent(Long id) {
         String sql= "SELECT s.name as name_student,  sub.name as name_subject, sco.firstscore, sco.secondscore, sco.finalscore, sco.summaryscore FROM testscore sco " +
                 "INNER JOIN students s ON sco.id_student = s.id INNER JOIN subjects sub ON sco.id_subject=sub.id WHERE s.id =" + id + " AND s.isDeleted = 0";
-
+//        String sql= "SELECT  sub.name as name_subject, sco.firstscore, sco.secondscore, sco.finalscore, sco.summaryscore,  sco.id_student FROM subjects sub\n" +
+//                "LEFT JOIN testscore sco  ON sco.id_subject=sub.id AND sco.id_student =" +id;
         List<TestScore> testScores = new ArrayList<>();
         List<Map<String, Object>> rows = jdbcTemplate.queryForList(sql);
         for (Map row : rows) {
@@ -83,7 +84,8 @@ public class JDBCTestScoreRepository implements TestScoreRepository {
     public List<TestScore> findAllByIdClassAndIdSubject(Long id_class, Long id_subject) {
 //        String sql = "SELECT s.id as id_student, s.name as name_student, sco.firstscore, sco.secondscore, sco.finalscore, sco.summaryscore FROM students s " +
 //                "INNER JOIN testscore sco ON s.id= sco.id_student WHERE s.id_class ="+ id_class+" AND sco.id_subject ="+ id_subject+" AND s.isDeleted=0";
-        String sql = "SELECT s.id as id_student,sco.id as id_score, sco.id_student as sco_idstudent,sco.id_subject, s.id_class, s.name as name_student, sco.firstscore, sco.secondscore, sco.finalscore, sco.summaryscore FROM students s"
+        String sql = "SELECT s.id as id_student,sco.id as id_score, sco.id_student as sco_idstudent,sco.id_subject," +
+                " s.id_class, s.name as name_student, sco.firstscore, sco.secondscore, sco.finalscore, sco.summaryscore FROM students s"
         + " LEFT JOIN testscore sco ON s.id= sco.id_student AND sco.id_subject="+id_subject+" WHERE s.id_class ="+ id_class+" AND s.isDeleted=0";
 
         List<TestScore> testScores = new ArrayList<>();

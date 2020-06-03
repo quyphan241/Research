@@ -57,22 +57,11 @@ public class ClassResultExport {
                     sheet.autoSizeColumn(col);
                 }
 
-
-                // CellStyle for Age
-//          CellStyle ageCellStyle = workbook.createCellStyle();
-//          ageCellStyle.setDataFormat(createHelper.createDataFormat().getFormat("#"));
-
                 int rowIdx = 4;
                 for (TestScore testScore : testScores) {
                     Row row = sheet.createRow(rowIdx++);
                     row.createCell(0).setCellValue(rowIdx - 4);
                     row.createCell(1).setCellValue(testScore.getName_student());
-//                row.createCell(2).setCellValue(testScore.getFirstScore());
-//                row.createCell(3).setCellValue(testScore.getSecondScore());
-//                row.createCell(4).setCellValue(testScore.getFinalScore());
-//                double summaryScore = (testScore.getFirstScore()
-//                        + testScore.getSecondScore()*3 + testScore.getFinalScore()*6)/10;
-//                row.createCell(5).setCellValue(summaryScore);
                     if (testScore.getFirstScore() == -1) {
                         row.createCell(2).setCellValue("");
                         row.createCell(3).setCellValue("");
@@ -82,9 +71,7 @@ public class ClassResultExport {
                         row.createCell(3).setCellValue(testScore.getSecondScore());
                         row.createCell(4).setCellValue(testScore.getFinalScore());
                         row.createCell(5).setCellFormula(row.getCell(2).getCellFormula() + row.getCell(3).getCellFormula());
-//                        double summaryScore = (testScore.getFirstScore()
-//                                + testScore.getSecondScore() * 3 + testScore.getFinalScore() * 6) / 10;
-//                        row.createCell(5).setCellValue(summaryScore);
+
                     }
                 }
 
