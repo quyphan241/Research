@@ -6,11 +6,16 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class TestScoreService {
- 
-  private testScoreUrl = 'http://localhost:8080/testScores';
-  private baseUrl = 'http://localhost:8080/scores';
-  private studentUrl = 'http://localhost:8080/students/';
-  private reportExcelUrl='http://localhost:8080/scores/report/';
+
+  private ip = 'http://192.168.144.122';
+  // private testScoreUrl = 'http://localhost:8080/testScores';
+  // private baseUrl = 'http://localhost:8080/scores';
+  // private studentUrl = 'http://localhost:8080/students/';
+  // private reportExcelUrl='http://localhost:8080/scores/report/';
+  private testScoreUrl = this.ip+ ':8080/testScores';
+  private baseUrl = this.ip +':8080/scores';
+  private studentUrl = this.ip +':8080/students/';
+  private reportExcelUrl= this.ip +':8080/scores/report/';
 
   constructor(private http: HttpClient) { }
 

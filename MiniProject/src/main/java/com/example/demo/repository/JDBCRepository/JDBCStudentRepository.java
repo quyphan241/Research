@@ -58,7 +58,7 @@ public class JDBCStudentRepository implements StudentRepository {
 
     @Override
     public Student findById(Long id) {
-        String sql = "SELECT s.id as id, s.name as name, s.birthdate as birthdate, s.gender as gender,  s.student_code as student_code, c.name as name_class FROM students s " +
+        String sql = "SELECT s.id as id, s.id_class, s.name as name, s.birthdate as birthdate, s.gender as gender,  s.student_code as student_code, c.name as name_class FROM students s " +
                 "INNER JOIN classes c ON s.id_class= c.id WHERE s.id = ? AND s.isDeleted=0";
         return (Student) jdbcTemplate.queryForObject(
                 sql,

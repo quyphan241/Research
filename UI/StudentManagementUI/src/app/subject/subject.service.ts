@@ -6,8 +6,10 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class SubjectService {
+  private ip = 'http://192.168.144.122';
+  // private baseUrl = 'http://localhost:8080/subjects'; 
+  private baseUrl = this.ip+':8080/subjects';
 
-  private baseUrl = 'http://localhost:8080/subjects';
 
   constructor(private http: HttpClient) { }
 

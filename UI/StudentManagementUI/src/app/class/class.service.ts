@@ -6,8 +6,10 @@ import { Observable } from 'rxjs/internal/Observable';
   providedIn: 'root'
 })
 export class ClassService {
+  private ip = 'http://192.168.144.122';
+  // private baseUrl = 'http://localhost:8080/classes';
+  private baseUrl = this.ip+':8080/classes';
 
-  private baseUrl = 'http://localhost:8080/classes';
 
   constructor(private http: HttpClient) { }
 

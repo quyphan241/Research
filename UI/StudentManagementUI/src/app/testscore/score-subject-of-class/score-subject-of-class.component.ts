@@ -1,6 +1,6 @@
 import { Subject } from './../../subject/subject';
 import { Component, OnInit, Inject } from '@angular/core';
-
+import {Location} from '@angular/common';
 import { Observable} from 'rxjs';
 import { TestScore } from '../testscore';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -57,7 +57,7 @@ export class ScoreSubjectOfClassComponent implements OnInit {
   }
   
   constructor(private route: ActivatedRoute, private router: Router, private testScoreService: TestScoreService,
-                 private classService: ClassService,private subjectService: SubjectService,
+                 private classService: ClassService,private subjectService: SubjectService, private _location: Location,
                  @Inject(DOCUMENT) private document: Document) { 
   }
 
@@ -128,7 +128,12 @@ export class ScoreSubjectOfClassComponent implements OnInit {
     this.router.navigate(['scores/'+this.id_class+'/'+this.id_subject]);
   }
 
+  backClicked() {
+    this._location.back();
+  }
   exportExcel(): void {
-    this.document.location.href = 'http://localhost:8080/scores/report/'+this.id_class+'/'+this.id_subject;
+    // this.document.location.href = 'http://localhost:8080/scores/report/'+this.id_class+'/'+this.id_subject;
+    this.document.location.href = 'http://192.168.144.122:8080/scores/report/'+this.id_class+'/'+this.id_subject;
+
 }
 }

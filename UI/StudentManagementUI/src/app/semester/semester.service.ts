@@ -9,7 +9,10 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 })
 
 export class SemesterService {
-  private baseUrl = 'http://localhost:8080/semesters';
+  private ip = 'http://192.168.144.122';
+  // private baseUrl = 'http://localhost:8080/semesters';
+  private baseUrl = this.ip+':8080/semesters';
+
 
   constructor(private http: HttpClient) { }
 
